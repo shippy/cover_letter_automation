@@ -28,6 +28,11 @@ def parse_args() -> argparse.Namespace:
         default=Path("resume/resume.json"),
         help="The JSON resume to extract information from.",
     )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Drop into PDB after the multi-agent chat concludes.",
+    )
     return parser.parse_args()
 
 
@@ -69,11 +74,15 @@ def main() -> ChatResult:
         job_description=job_description,
         json_resume_path=args.resume,
     )
-    print(chat.cost)  # noqa: T201
+    try:
+        print("Cost: $", round(chat.cost[0]["total_cost"], 2))  # noqa: T201
+    except (IndexError, KeyError):
+        print("Unable to retrieve cost, see full array: ", chat.cost)  # noqa: T201
 
-    import pdb  # noqa: T100, PLC0415
+    if args.debug:
+        import pdb  # noqa: T100, PLC0415
 
-    pdb.set_trace()  # noqa: T100
+        pdb.set_trace()  # noqa: T100
 
     return chat
 
