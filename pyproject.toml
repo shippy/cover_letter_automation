@@ -1,6 +1,6 @@
 [tool.poetry]  # https://python-poetry.org/docs/pyproject/
 name = "cover_letter_automation"
-version = "0.1.0"
+version = "0.2.0"
 description = "A Python package for ingesting job descriptions & resumes, and crafting cover letters that use the latter to satisfy the former"
 authors = []
 license = "Proprietary"
@@ -12,7 +12,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]  # https://python-poetry.org/docs/dependency-specification/
-python = ">=3.11.6,<3.13"
+python = ">=3.11.8,<3.13"
 poethepoet = ">=0.24.4"
 pydantic = ">=2.6.1"
 pyautogen = {extras = ["retrievechat", "teachable", "websurfer"], version = "^0.2.21"}

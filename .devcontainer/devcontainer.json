@@ -25,7 +25,8 @@
         "ms-python.python",
         "ryanluker.vscode-coverage-gutters",
         "tamasfe.even-better-toml",
-        "visualstudioexptteam.vscodeintellicode"
+        "visualstudioexptteam.vscodeintellicode",
+        "github.vscode-github-actions"
       ],
       "settings": {
         "coverage-gutters.coverageFileNames": [

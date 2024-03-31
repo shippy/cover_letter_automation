@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG PYTHON_VERSION=3.11.6
+ARG PYTHON_VERSION=3.11.8
 FROM python:$PYTHON_VERSION-slim AS base
 
 LABEL org.opencontainers.image.description "A Python package for ingesting job descriptions & resumes, and crafting cover letters that use the latter to satisfy the former"
