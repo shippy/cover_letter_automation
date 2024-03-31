@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  # Container definition for the devcontainer
+  devcontainer:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: ${PYTHON_VERSION:-3.11.6}
+      target: dev
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/workspaces/cover_letter_automation/
+
+networks:
+  default:
+    name: cover_letter_automation-network

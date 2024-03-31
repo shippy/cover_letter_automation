@@ -1,0 +1,74 @@
+# By default, GitHub Actions don't have permission to write to the ghcr.io registry.
+# - Go to: Settings (of this repository) -> Actions -> General -> Workflow permissions
+# - Enable: Read and write permissions
+name: Lint and Test
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    strategy:
+      matrix:
+        python-version: [ "3.11.6" ]
+    name: Python ${{ matrix.python-version }}
+    env:
+      TAG: devcontainer-${{ matrix.python-version }}-${{ github.head_ref || github.ref_name }}
+    steps:
+      # https://github.com/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Add an empty .env file.
+      # The devcontainers/ci build action fails when the docker-compose.yml file references an .env file that does not exist.
+      - name: Touch .env
+        run: touch .env
+
+      # https://github.com/docker/login-action
+      - name: Log in to registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/devcontainers/ci
+      - name: Build DevContainer
+        uses: devcontainers/ci@v0.3
+        env:
+          PYTHON_VERSION: ${{ matrix.python-version }}
+        with:
+          imageName: ghcr.io/${{ github.repository }}
+          cacheFrom: ghcr.io/${{ github.repository }}:${{ env.TAG }}
+          imageTag: ${{ env.TAG }}
+          push: always
+
+      - name: Run lint
+        uses: devcontainers/ci@v0.3
+        with:
+          cacheFrom: ghcr.io/${{ github.repository }}:${{ env.TAG }}
+          push: never
+          runCmd: poe lint
+
+      - name: Run test
+        uses: devcontainers/ci@v0.3
+        with:
+          cacheFrom: ghcr.io/${{ github.repository }}:${{ env.TAG }}
+          push: never
+          runCmd: poe test
+
+      # https://github.com/codecov/codecov-action
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: reports/coverage.xml
+        env:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+          verbose: true

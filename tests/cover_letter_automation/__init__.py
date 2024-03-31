@@ -1,0 +1,1 @@
+"""Test Cover Letter Automation."""

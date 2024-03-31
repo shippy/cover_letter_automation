@@ -1,0 +1,13 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v0.3.0
+_src_path: gh:lukin0110/poetry-copier.git
+ci: github
+description: A Python package for ingesting job descriptions & resumes, and crafting
+    cover letters that use the latter to satisfy the former
+name: Cover Letter Automation
+package_type: package
+repository_url: https://github.com/shippy/cover_letter_automation/
+use_makefile: true
+use_private_package_repository: false
+use_private_publish_repository: false
+use_pydantic: true

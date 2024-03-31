@@ -1,0 +1,1 @@
+"""Cover Letter Automation package."""

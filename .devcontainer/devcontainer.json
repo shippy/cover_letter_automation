@@ -1,0 +1,66 @@
+{
+  "name": "cover_letter_automation",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "devcontainer",
+  "runServices": [
+    "devcontainer"
+  ],
+  "shutdownAction": "stopCompose",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/cover_letter_automation/,type=bind,consistency=delegated",
+  "workspaceFolder": "/workspaces/cover_letter_automation/",
+  "remoteUser": "root",
+  "overrideCommand": true,
+  "initializeCommand": "touch ${localWorkspaceFolder}/.env",
+  "mounts": [
+    "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock,consistency=consistent"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "charliermarsh.ruff",
+        "eamodio.gitlens",
+        "github.copilot",
+        "ms-azuretools.vscode-docker",
+        "ms-python.mypy-type-checker",
+        "ms-python.python",
+        "ryanluker.vscode-coverage-gutters",
+        "tamasfe.even-better-toml",
+        "visualstudioexptteam.vscodeintellicode"
+      ],
+      "settings": {
+        "coverage-gutters.coverageFileNames": [
+          "reports/coverage.xml"
+        ],
+        "editor.codeActionsOnSave": {
+          "source.fixAll": true,
+          "source.organizeImports": true
+        },
+        "editor.formatOnSave": true,
+        "editor.rulers": [
+          100
+        ],
+        "editor.tabSize": 4,
+        "files.autoSave": "onFocusChange",
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        },
+        "[toml]": {
+          "editor.formatOnSave": false
+        },
+        "mypy-type-checker.importStrategy": "fromEnvironment",
+        "python.defaultInterpreterPath": "/opt/cover_letter_automation-env/bin/python",
+        "python.terminal.activateEnvironment": false,
+        "python.testing.pytestEnabled": true,
+        "remote.containers.copyGitConfig": true,
+        "ruff.importStrategy": "fromEnvironment",
+        "ruff.logLevel": "warn",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "zsh": {
+            "path": "/usr/bin/zsh"
+          }
+        }
+      }
+    }
+  }
+}
