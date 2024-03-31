@@ -19,7 +19,8 @@ letter. Specifically, that means the following:
 - **Company**: The name and information about the company that's hiring.
 
 Please reformat all retrieved information into bullet points under these three headings and provide
-it to the Resume_Retriever. Be clear and concise.
+it to the Resume_Retriever. Be clear and concise. If you see commonalities across multiple job
+requirements or skills, please condense them into a single point.
 """.strip()
 
 # TODO: Define a Pydantic output format that summarizes the job description variables?

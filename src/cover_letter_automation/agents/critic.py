@@ -27,10 +27,11 @@ Alternately, if there are no substantial issues with the cover letter, you shoul
 def export_letter(
     cover_letter: Annotated[str, "Full text of the cover letter, formatted in Markdown"],
     filename: Annotated[str, "Name of the file to save the cover letter to, with .md extension"],
-    path: Annotated[str, "Folder in which to save the file"] = "letters/",
+    path: Annotated[str, "Folder in which to save the file"] = "cover_letters/",
 ) -> str:
     """Export a cover letter to a file path and output that path."""
     target = Path(path) / filename
+    target.touch()
     with target.open(mode="w") as f:
         f.write(cover_letter)
     return str(target.absolute())

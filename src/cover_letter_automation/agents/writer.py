@@ -20,8 +20,13 @@ Critic. You should aim to address especially the following points:
 - **Relevance**: A discussion of how your skills and experience align with the job requirements.
 - **Engagement**: A compelling argument for why you're the best candidate for the position.
 - **Closing**: A conclusion that summarizes your interest and availability for the role.
+- **Correctness**: You should only use information retrieved from the resume. Under no circumstances
+  should you make anything up.
 - **Completeness**: Ensure that the cover letter contains all the requirements the job description
   asks for.
+
+You should avoid hyperbole and cliches, keep things brief and to the point, and always draw a
+connection between the resume and the job description requirements.
 """.strip()
 
 
@@ -40,7 +45,7 @@ class Writer(ConversableAgent):
 
         # Instantiate a Teachability object. Its parameters are all optional.
         teachability = Teachability(
-            reset_db=False,  # Use True to force-reset the memo DB, and False to use an existing DB.
+            reset_db=True,  # Use True to force-reset the memo DB, and False to use an existing DB.
         )
 
         # Now add teachability to the agent.
