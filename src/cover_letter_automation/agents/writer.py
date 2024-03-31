@@ -2,8 +2,10 @@
 
 from typing import Any
 
-from autogen import ConversableAgent
+from autogen import ConversableAgent, register_function
 from autogen.agentchat.contrib.capabilities.teachability import Teachability
+
+from cover_letter_automation.agents.critic import export_letter
 
 # from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent  # noqa: ERA001
 
@@ -30,6 +32,8 @@ otherwise.
 
 You should avoid hyperbole and cliches, keep things brief and to the point, and always draw a
 connection between the resume and the job description requirements.
+
+If you can no longer improve the cover letter, use the `export_letter` function to save it.
 """.strip()
 
 
@@ -44,6 +48,15 @@ class Writer(ConversableAgent):
             human_input_mode="TERMINATE",
             llm_config=llm_config,
             **kwargs,
+        )
+
+        # Let Writer save the cover letter to a file, too.
+        register_function(
+            export_letter,
+            name="export_letter",
+            description="Export the latest cover letter in Markdown to a file path and output that path.",
+            caller=self,
+            executor=self,
         )
 
         # Instantiate a Teachability object. Its parameters are all optional.

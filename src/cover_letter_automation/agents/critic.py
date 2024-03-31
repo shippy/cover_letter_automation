@@ -27,7 +27,8 @@ to deliver multiple rounds of critique.
 
 If there are no substantial issues with the cover letter, or if the Cover_Letter_Writer refuses to
 make any more versions, you should use the `export_letter` tool to save the last draft of the cover
-letter and terminate the group chat.
+letter and terminate the group chat. You should also terminate if the Cover_Letter_Writer has
+already exported the cover letter.
 """.strip()
 # - **Professionalism**: Is the cover letter well-written and free of errors?
 
