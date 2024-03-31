@@ -49,6 +49,7 @@ class Critic(ConversableAgent):
             description="A conversational agent that provides feedback on cover letters.",
             system_message=_DEFAULT_CRITIC_PROMPT,
             human_input_mode="TERMINATE",
+            llm_config=llm_config,
             **kwargs,
         )
 

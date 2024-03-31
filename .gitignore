@@ -24,3 +24,15 @@ reports/
 
 # PyCharm
 .idea/
+
+# Autogen
+.cache/
+chroma.sqlite3
+
+# App-specific folders
+resume/
+!resume/.gitkeep
+jd/
+!jd/.gitkeep
+cover_letters/
+!cover_letters/.gitkeep
