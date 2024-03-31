@@ -30,23 +30,22 @@ def main() -> ChatResult:
 
     args = parse_args()
 
-    mistral_spec = {
+    mistral_spec = {  # noqa: F841
         "model": "mistral",
         "base_url": "http://localhost:11434/v1",
         "api_key": "ollama",
     }
-    openai_spec = {
+    openai_4_spec = {
         "model": "gpt-4-turbo-preview",
         "api_key": os.environ["OPENAI_API_KEY"],
     }
-    openai_3_5_spec = {
+    openai_3_5_spec = {  # noqa: F841
         "model": "gpt-3.5-turbo-preview",
         "api_key": str(os.environ["OPENAI_API_KEY"]),
     }
 
     config_list = {
-        # "config_list": [openai_spec, openai_3_5_spec],
-        "config_list": [openai_spec],
+        "config_list": [openai_4_spec],
         "temperature": 0.7,
         "cache_seed": None,
     }

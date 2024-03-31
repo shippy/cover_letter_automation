@@ -5,7 +5,13 @@ from typing import Any
 
 from autogen import ChatResult, GroupChat, GroupChatManager, UserProxyAgent
 
-from cover_letter_automation.agents import CompanyResearcher, Critic, JobDescriptionIngester, ResumeRetriever, Writer
+from cover_letter_automation.agents import (  # noqa: F401
+    CompanyResearcher,
+    Critic,
+    JobDescriptionIngester,
+    ResumeRetriever,
+    Writer,
+)
 
 
 def setup_and_start_session(
@@ -14,7 +20,7 @@ def setup_and_start_session(
     """Set up and start the group chat session."""
     client = UserProxyAgent(name="Myself", llm_config=deepcopy(llm_config))
     jd_ingester = JobDescriptionIngester(job_description=job_description, llm_config=deepcopy(llm_config))
-    researcher = CompanyResearcher(llm_config=deepcopy(llm_config), bing_config=bing_config)
+    # researcher = CompanyResearcher(llm_config=deepcopy(llm_config), bing_config=bing_config)  # noqa: ERA001
     resume_reader = ResumeRetriever(llm_config=deepcopy(llm_config))
     writer = Writer(llm_config=deepcopy(llm_config))
     critic = Critic(llm_config=deepcopy(llm_config))
