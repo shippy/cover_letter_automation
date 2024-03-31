@@ -6,7 +6,7 @@ from typing import Any
 
 from autogen import ChatResult, GroupChat, GroupChatManager, UserProxyAgent
 
-from cover_letter_automation.agents import (  # noqa: F401
+from cover_letter_automation.agents import (
     CompanyResearcher,
     Critic,
     JobDescriptionIngester,
@@ -16,23 +16,38 @@ from cover_letter_automation.agents import (  # noqa: F401
 
 
 def setup_and_start_session(
-    *, llm_config: dict[str, Any], bing_config: dict[str, Any], job_description: str, json_resume_path: Path
+    *,
+    llm_config: dict[str, Any],
+    job_description: str,
+    json_resume_path: Path,
+    bing_config: dict[str, Any] | None = None,
 ) -> ChatResult:
     """Set up and start the group chat session."""
     client = UserProxyAgent(name="Myself", llm_config=deepcopy(llm_config))
     jd_ingester = JobDescriptionIngester(job_description=job_description, llm_config=deepcopy(llm_config))
-    # researcher = CompanyResearcher(llm_config=deepcopy(llm_config), bing_config=bing_config)  # noqa: ERA001
+    if bing_config is not None:
+        researcher = CompanyResearcher(llm_config=deepcopy(llm_config), bing_config=bing_config)
     resume_reader = ResumeRetriever(llm_config=deepcopy(llm_config), json_resume_path=json_resume_path)
     writer = Writer(llm_config=deepcopy(llm_config))
     critic = Critic(llm_config=deepcopy(llm_config))
 
-    speaker_transitions = {
-        client: [jd_ingester],
-        jd_ingester: [resume_reader],  # FIXME: Re-integrate researcher
-        resume_reader: [writer],
-        writer: [critic],
-        critic: [writer],
-    }
+    if bing_config is None:
+        speaker_transitions = {
+            client: [jd_ingester],
+            jd_ingester: [resume_reader],
+            resume_reader: [writer],
+            writer: [critic],
+            critic: [writer],
+        }
+    else:
+        speaker_transitions = {
+            client: [jd_ingester],
+            jd_ingester: [researcher],
+            researcher: [researcher, resume_reader],
+            resume_reader: [writer],
+            writer: [critic],
+            critic: [writer],
+        }
 
     group_chat = GroupChat(
         agents=list(speaker_transitions.keys()),

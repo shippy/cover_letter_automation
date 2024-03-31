@@ -15,6 +15,17 @@ cd cover_letter_automation
 poetry install
 ```
 
+Afterwards, you will need to add your OpenAI API key (and, optionally, Bing API key) to a `.env`
+file in the root of the project. You can [grab your Bing API key here](https://www.microsoft.com/en-us/bing/apis/bing-web-search-api), though do be warned that the volume of requests the agent will want to make possibly exceeds the free tier. If you don't have
+a Bing API key, we'll automatically skip the web-search step. **Note that `CompanyResearcher` is 
+mostly broken and doesn't work, so **not setting the `BING_API_KEY` is fine**.
+
+```bash
+echo "OPENAI_API_KEY=your_openai_api_key" > .env
+# echo "BING_API_KEY=your_bing_api_key" >> .env
+```
+
+
 Then, you should place your `resume.json` ([JSON Resume](https://jsonresume.org), although in
 principle it doesn't have to have that exact schema) in `resume/` and your job descriptions in
 `jd/`. You can then run the following:

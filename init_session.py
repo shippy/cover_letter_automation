@@ -62,7 +62,10 @@ def main() -> ChatResult:
         "cache_seed": None,
     }
 
-    bing_config = {"viewport_size": 4096, "bing_api_key": os.environ["BING_API_KEY"]}
+    bing_config = None
+    bing_api_key = os.environ.get("BING_API_KEY")
+    if bing_api_key:
+        bing_config = {"viewport_size": 4096, "bing_api_key": bing_api_key}
 
     with args.job_description.open("r") as f:
         # Read all lines of the job description into a single string
