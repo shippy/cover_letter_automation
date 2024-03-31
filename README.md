@@ -6,10 +6,27 @@ A Python package for ingesting job descriptions & resumes, and crafting cover le
 
 ## 🚀 Using
 
-To install this package, run:
+While the package is in theory pip-installable, it's not yet on PyPI. For now, you can clone the
+repo and run the following:
+
 ```bash
-pip install cover_letter_automation
+git clone https://github.com/shippy/cover_letter_automation.git
+cd cover_letter_automation
+poetry install
 ```
+
+Then, you should place your `resume.json` ([JSON Resume](https://jsonresume.org), although in
+principle it doesn't have to have that exact schema) in `resume/` and your job descriptions in
+`jd/`. You can then run the following:
+
+```bash
+poetry run python init_session.py --resume resume/$RESUME_NAME.json --jd jd/$JD_NAME.md
+# In theory, if you've placed your resume at resume/resume.json, you can omit that argument
+```
+
+Currently, due to the slightly ad-hoc nature of the agents, you'll need to run the above command for
+each job description you want to generate a cover letter for. The cover letters will be placed in
+`cover_letters/`.
 
 
 ## 🧑‍💻 Contributing
@@ -54,9 +71,22 @@ poe test
 poetry lock --no-update
 ```
 
----
-See how to develop with [PyCharm or any other IDE](https://github.com/lukin0110/poetry-copier/tree/main/docs/ide.md).
+#### 5. Add dependencies and remove them if not needed
+```bash
+poetry add package
+poetry remove package
+# or remove the package from the pyproject.toml file and run
+poetry install --sync
+```
 
----
-️⚡️ Scaffolded with [Poetry Copier](https://github.com/lukin0110/poetry-copier/).\
+## Credits
+
+<details>
+<summary>️⚡️ Scaffolded with Copier.</summary>
+
+See [Poetry Copier](https://github.com/lukin0110/poetry-copier/).
+
 🛠️ [Open an issue](https://github.com/lukin0110/poetry-copier/issues/new) if you have any questions or suggestions.
+
+See how to develop with [PyCharm or any other IDE](https://github.com/lukin0110/poetry-copier/tree/main/docs/ide.md).
+</details>
