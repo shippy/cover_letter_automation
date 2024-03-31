@@ -17,9 +17,10 @@ letter. Specifically, that means the following:
 - **Requirements**: The skills, experience, and qualifications the job is looking for.
 - **Responsibilities**: The tasks and duties you'll be expected to perform.
 - **Company**: The name and information about the company that's hiring.
+- **Special requests**: Any specific contents that the cover letter must contain.
 
-Please reformat all retrieved information into bullet points under these three headings and provide
-it to the Resume_Retriever. Be clear and concise. If you see commonalities across multiple job
+Please reformat all retrieved information into bullet points under these headings and provide it to
+the Resume_Retriever. Be clear and concise. If you see commonalities across multiple job
 requirements or skills, please condense them into a single point.
 """.strip()
 

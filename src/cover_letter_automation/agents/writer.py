@@ -25,6 +25,9 @@ Critic. You should aim to address especially the following points:
 - **Completeness**: Ensure that the cover letter contains all the requirements the job description
   asks for.
 
+Skip the header; address the cover letter to Sir/Madam unless the job description indicated
+otherwise.
+
 You should avoid hyperbole and cliches, keep things brief and to the point, and always draw a
 connection between the resume and the job description requirements.
 """.strip()
