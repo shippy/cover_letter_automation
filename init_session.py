@@ -21,6 +21,13 @@ def parse_args() -> argparse.Namespace:
         required=True,
         help="The job description to respond to.",
     )
+    parser.add_argument(
+        "--resume",
+        "-r",
+        type=Path,
+        default=Path("resume/resume.json"),
+        help="The JSON resume to extract information from.",
+    )
     return parser.parse_args()
 
 
@@ -60,6 +67,7 @@ def main() -> ChatResult:
         llm_config=config_list,
         bing_config=bing_config,
         job_description=job_description,
+        json_resume_path=args.resume,
     )
 
     import pdb  # noqa: T100, PLC0415

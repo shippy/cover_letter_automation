@@ -1,6 +1,7 @@
 """Set up the group chat session."""
 
 from copy import deepcopy
+from pathlib import Path
 from typing import Any
 
 from autogen import ChatResult, GroupChat, GroupChatManager, UserProxyAgent
@@ -15,13 +16,13 @@ from cover_letter_automation.agents import (  # noqa: F401
 
 
 def setup_and_start_session(
-    *, llm_config: dict[str, Any], bing_config: dict[str, Any], job_description: str
+    *, llm_config: dict[str, Any], bing_config: dict[str, Any], job_description: str, json_resume_path: Path
 ) -> ChatResult:
     """Set up and start the group chat session."""
     client = UserProxyAgent(name="Myself", llm_config=deepcopy(llm_config))
     jd_ingester = JobDescriptionIngester(job_description=job_description, llm_config=deepcopy(llm_config))
     # researcher = CompanyResearcher(llm_config=deepcopy(llm_config), bing_config=bing_config)  # noqa: ERA001
-    resume_reader = ResumeRetriever(llm_config=deepcopy(llm_config))
+    resume_reader = ResumeRetriever(llm_config=deepcopy(llm_config), json_resume_path=json_resume_path)
     writer = Writer(llm_config=deepcopy(llm_config))
     critic = Critic(llm_config=deepcopy(llm_config))
 
@@ -52,6 +53,7 @@ def setup_and_start_session(
         message="Please start the extraction from the job description, then write a cover letter based on a resume.",
         summary_method="reflection_with_llm",
         clear_history=True,
+        max_turns=20,
     )
 
     return conversation

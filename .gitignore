@@ -27,6 +27,7 @@ reports/
 
 # Autogen
 .cache/
+tmp/teachable_agent_db/
 chroma.sqlite3
 
 # App-specific folders
