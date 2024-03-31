@@ -69,6 +69,7 @@ def main() -> ChatResult:
         job_description=job_description,
         json_resume_path=args.resume,
     )
+    print(chat.cost)  # noqa: T201
 
     import pdb  # noqa: T100, PLC0415
 
