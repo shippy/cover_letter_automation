@@ -17,12 +17,13 @@ You should return a summary of the information you find, along with any relevant
 class CompanyResearcher(WebSurferAgent):
     """A web surfer agent that finds information about companies."""
 
-    def __init__(self, bing_config: dict[str, Any], **kwargs: Any) -> None:
+    def __init__(self, llm_config: dict[str, Any], bing_config: dict[str, Any], **kwargs: Any) -> None:
         super().__init__(
             name="Company_Researcher",
             description="A web surfer agent that finds information about companies.",
             system_message=_DEFAULT_WEB_SURFER_PROMPT,
             human_input_mode="NEVER",
             browser_config=bing_config,
+            llm_config=llm_config,
             **kwargs,
         )

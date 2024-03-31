@@ -45,7 +45,7 @@ class Critic(ConversableAgent):
         **kwargs: Any,
     ) -> None:
         super().__init__(
-            name="Cover Letter Critic",
+            name="Cover_Letter_Critic",
             description="A conversational agent that provides feedback on cover letters.",
             system_message=_DEFAULT_CRITIC_PROMPT,
             human_input_mode="TERMINATE",

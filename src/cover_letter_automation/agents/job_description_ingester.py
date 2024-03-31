@@ -17,6 +17,9 @@ letter. Specifically, that means the following:
 - **Requirements**: The skills, experience, and qualifications the job is looking for.
 - **Responsibilities**: The tasks and duties you'll be expected to perform.
 - **Company**: The name and information about the company that's hiring.
+
+Please reformat all retrieved information into bullet points under these three headings and provide
+it to the Resume_Retriever. Be clear and concise.
 """.strip()
 
 # TODO: Define a Pydantic output format that summarizes the job description variables?
@@ -25,9 +28,10 @@ letter. Specifically, that means the following:
 class JobDescriptionIngester(ConversableAgent):
     """An agent that extracts information from job descriptions."""
 
-    def __init__(self, job_description: str, **kwargs: Any):
+    def __init__(self, job_description: str, llm_config: dict[str, Any], **kwargs: Any):
         """Initialize the agent."""
         super().__init__(
+            llm_config=llm_config,
             name="Job_Description_Ingester",
             description="An agent that extracts information from job descriptions.",
             system_message=_DEFAULT_JOB_DESCRIPTION_PROMPT.format(job_description=job_description),

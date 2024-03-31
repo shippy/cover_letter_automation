@@ -29,6 +29,12 @@ def main() -> ChatResult:
     _ = load_dotenv()
 
     args = parse_args()
+
+    mistral_spec = {
+        "model": "mistral",
+        "base_url": "http://localhost:11434/v1",
+        "api_key": "ollama",
+    }
     openai_spec = {
         "model": "gpt-4-turbo-preview",
         "api_key": os.environ["OPENAI_API_KEY"],
@@ -39,7 +45,8 @@ def main() -> ChatResult:
     }
 
     config_list = {
-        "config_list": [openai_spec, openai_3_5_spec],
+        # "config_list": [openai_spec, openai_3_5_spec],
+        "config_list": [openai_spec],
         "temperature": 0.7,
         "cache_seed": None,
     }

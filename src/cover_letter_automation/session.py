@@ -20,8 +20,6 @@ def setup_and_start_session(
     critic = Critic(llm_config=deepcopy(llm_config))
 
     speaker_transitions = {
-        # jd_ingester: [researcher],
-        # researcher: [resume_reader],
         client: [jd_ingester],
         jd_ingester: [resume_reader],  # FIXME: Re-integrate researcher
         resume_reader: [writer],
@@ -30,9 +28,9 @@ def setup_and_start_session(
     }
 
     group_chat = GroupChat(
-        agents=speaker_transitions.keys(),
+        agents=list(speaker_transitions.keys()),
         messages=[],
-        send_introductions=False,
+        send_introductions=True,
         allowed_or_disallowed_speaker_transitions=speaker_transitions,
         speaker_transitions_type="allowed",
     )
@@ -44,9 +42,9 @@ def setup_and_start_session(
     )
 
     conversation = client.initiate_chat(
-        recipient=group_manager,  # FIXME: Should be in a separate variable?
-        message="Please start the extraction from the job description.",
-        # summary_method="last_msg",
+        recipient=group_manager,
+        message="Please start the extraction from the job description, then write a cover letter based on a resume.",
+        summary_method="reflection_with_llm",
         clear_history=True,
     )
 

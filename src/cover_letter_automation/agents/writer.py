@@ -28,12 +28,13 @@ Critic. You should aim to address especially the following points:
 class Writer(ConversableAgent):
     """An agent that writes and improves the cover letter based on assignment and feedback."""
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, llm_config: dict[str, Any], **kwargs: Any) -> None:
         super().__init__(
             name="Cover_Letter_Writer",
             description="An agent that writes and improves the cover letter based on assignment and feedback.",
             system_message=_DEFAULT_WRITER_PROMPT,
             human_input_mode="TERMINATE",
+            llm_config=llm_config,
             **kwargs,
         )
 
