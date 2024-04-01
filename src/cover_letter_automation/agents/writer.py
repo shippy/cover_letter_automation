@@ -5,7 +5,7 @@ from typing import Any
 from autogen import ConversableAgent, register_function
 from autogen.agentchat.contrib.capabilities.teachability import Teachability
 
-from cover_letter_automation.agents.critic import export_letter
+from cover_letter_automation.tools import export_letter
 
 # from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent  # noqa: ERA001
 
@@ -26,6 +26,9 @@ Critic. You should aim to address especially the following points:
   should you make anything up.
 - **Completeness**: Ensure that the cover letter contains all the requirements the job description
   asks for.
+- **Whimsical tone**: Be professional, but not *too* formal. Try unusual turns of phrase, but avoid
+  cliches (e.g. "since the dawn of time"/"since the outset of my career"). Use few adjectives and
+  no adverbs unless necessary.
 
 Skip the header; address the cover letter to Sir/Madam unless the job description indicated
 otherwise.
