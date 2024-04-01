@@ -78,7 +78,7 @@ def main() -> ChatResult:
         json_resume_path=args.resume,
     )
     try:
-        print("Cost: $", round(chat.cost[0]["total_cost"], 2))  # noqa: T201
+        print(chat.cost)  # noqa: T201
     except (IndexError, KeyError):
         print("Unable to retrieve cost, see full array: ", chat.cost)  # noqa: T201
 
