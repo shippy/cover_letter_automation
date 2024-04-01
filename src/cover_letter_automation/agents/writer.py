@@ -2,10 +2,8 @@
 
 from typing import Any
 
-from autogen import ConversableAgent, register_function
+from autogen import ConversableAgent
 from autogen.agentchat.contrib.capabilities.teachability import Teachability
-
-from cover_letter_automation.tools import export_letter
 
 # from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent  # noqa: ERA001
 
@@ -13,31 +11,37 @@ from cover_letter_automation.tools import export_letter
 # - Attempt to retrieve relevant pieces of the resumé in response to either the requirements or the
 #   feedback.
 _DEFAULT_WRITER_PROMPT = """
-Write a cover letter for the job description requirements provided by Job_Description_Ingester using
-information from the Resume_Retriever and, if applicable, responsive to the feedback provided by
-Critic. You should aim to address especially the following points:
+As a seasoned and measured professional, write the cover letter for the job description requirements
+provided by Job_Description_Ingester using information from the Resume_Retriever and, if applicable,
+responsive to the feedback provided by Critic. You should aim to include especially the following
+points:
 
 - **Introduction**: A brief introduction that explains who you are and why you're interested in the
     position.
 - **Relevance**: A discussion of how your skills and experience align with the job requirements.
 - **Engagement**: A compelling argument for why you're the best candidate for the position.
 - **Closing**: A conclusion that summarizes your interest and availability for the role.
+
+You should aim for the following qualities in the cover letter:
+
 - **Correctness**: You should only use information retrieved from the resume. Under no circumstances
   should you make anything up.
 - **Completeness**: Ensure that the cover letter contains all the requirements the job description
   asks for.
 - **Principles of good writing.** Be concise, but not at the expense of your specific work
   experience. Avoid cliches. Use few adjectives and no adverbs. Use active voice.
-- **Voice**: Be whimsical if prompted by the Critic. Otherwise, keep the tone professional.
+- **Voice**: Be somewhat whimsical if prompted by the Critic. Otherwise, keep the tone professional.
+  Avoid cliche and claims about past trends.
+- **Flow**: Ensure that the cover letter flows smoothly from one paragraph to the next, and that
+  each paragraph conveys a specific message.
 
-Skip the header; address the cover letter to Sir/Madam unless the job description indicated
-otherwise.
+Skip the header; address the cover letter to 'Dear Sir/Madam' unless the job description indicated
+another recipient.
 
 You should avoid hyperbole and cliches, keep things brief and to the point, and always draw a
 connection between the resume and the job description requirements.
-
-If you can no longer improve the cover letter, use the `export_letter` function to save it.
 """.strip()
+# If you can no longer improve the cover letter, use the `export_letter` function to save it.
 
 
 class Writer(ConversableAgent):
@@ -51,15 +55,6 @@ class Writer(ConversableAgent):
             human_input_mode="TERMINATE",
             llm_config=llm_config,
             **kwargs,
-        )
-
-        # Let Writer save the cover letter to a file, too.
-        register_function(
-            export_letter,
-            name="export_letter",
-            description="Export the latest cover letter in Markdown to a file path and output that path.",
-            caller=self,
-            executor=self,
         )
 
         # Instantiate a Teachability object. Its parameters are all optional.

@@ -19,7 +19,8 @@ letter. Specifically, that means the following:
   management positions).
 - **Responsibilities**: The tasks and duties you'll be expected to perform.
 - **Company**: The name and information about the company that's hiring. (Ignore any DEI statements.)
-- **Special requests**: Any specific contents that the cover letter must contain.
+- **Special requests**: Any specific contents that the cover letter must contain, or specific
+  cover letter recipients (e.g. hiring manager).
 
 Please reformat all retrieved information into bullet points under these headings and provide it to
 the Resume_Retriever. Be clear and concise. If you see commonalities across multiple job

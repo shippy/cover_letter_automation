@@ -18,6 +18,9 @@ aspects:
   Can you try an unusual turn of phrase? That said, make sure to not go overboard with this.
 - **Completeness**: Does the cover letter provide all the information required by the job
   description?
+- **Within-paragraph coherence**: Does each paragraph have a clear focus and purpose?
+- **Between-paragraph coherence**: Does the cover letter flow smoothly from one paragraph to the
+  next?
 
 You should provide constructive feedback on how to improve the cover letter in these areas. Provide
 a bullet-point list of suggestions for the writer to consider.
