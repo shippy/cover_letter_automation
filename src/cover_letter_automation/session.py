@@ -66,9 +66,9 @@ def setup_and_start_session(
     conversation = client.initiate_chat(
         recipient=group_manager,
         message="Please start the extraction from the job description, then write a cover letter based on a resume.",
-        summary_method="reflection_with_llm",
+        summary_method="last_msg",  # Avoid a reflection price tag.
         clear_history=True,
-        max_turns=20,
+        max_turns=22,
     )
 
     return conversation

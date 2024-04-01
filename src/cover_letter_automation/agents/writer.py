@@ -26,10 +26,9 @@ Critic. You should aim to address especially the following points:
   should you make anything up.
 - **Completeness**: Ensure that the cover letter contains all the requirements the job description
   asks for.
-- **Whimsical tone**: Be professional, but not *too* formal; at the same time, be a little
-  whimsical, but don't go overboard with it. Try one or two unusual turns of phrase.
-- **Principles of good writing.** Avoid cliches (e.g. "since the dawn of time"/"since the outset of
-  my career"). Use few adjectives and no adverbs unless necessary. Be concise. Use active voice.
+- **Principles of good writing.** Be concise, but not at the expense of your specific work
+  experience. Avoid cliches. Use few adjectives and no adverbs. Use active voice.
+- **Voice**: Be whimsical if prompted by the Critic. Otherwise, keep the tone professional.
 
 Skip the header; address the cover letter to Sir/Madam unless the job description indicated
 otherwise.
