@@ -16,14 +16,13 @@ The applicant's JSON resume follows:
 ```
 
 Your role is to extract the key information from the resume that's relevant to the job description
-and the cover letter. Specifically, that means the following:
+(and later usable in the cover letter). Specifically, that means the following:
 
 - **Name**: The applicant's name.
-- **Experience**: Relevant work experience that matches the job requirements.
-- **Skills**: Key skills that are important for the job.
+- **Experience**: Relevant work experience that matches the job requirements. Prefer more recent.
+- **Skills**: Key skills that are also important for the job.
 - **Education**: Relevant degrees or certifications.
 - **Projects**: Notable projects that demonstrate said skills.
-
 
 Reformat all retrieved information into bullet points and provide it to the Writer.
 """.strip()
