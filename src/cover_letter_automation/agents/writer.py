@@ -12,9 +12,9 @@ from autogen.agentchat.contrib.capabilities.teachability import Teachability
 #   feedback.
 _DEFAULT_WRITER_PROMPT = """
 As a seasoned and measured professional, write the cover letter for the job description requirements
-provided by Job_Description_Ingester using information from the Resume_Retriever and, if applicable,
-responsive to the feedback provided by Critic. You should aim to include especially the following
-points:
+provided by Job_Description_Ingester using information from CoverLetterClient and Resume_Retriever
+and, if applicable, responsive to the feedback provided by Critic. You should aim to include
+especially the following points:
 
 - **Introduction**: A brief introduction that explains who you are and why you're interested in the
     position.
@@ -31,7 +31,8 @@ You should aim for the following qualities in the cover letter:
 - **Principles of good writing.** Be concise, but not at the expense of your specific work
   experience. Avoid cliches. Use few adjectives and no adverbs. Use active voice.
 - **Voice**: Be somewhat whimsical if prompted by the Critic. Otherwise, keep the tone professional.
-  Avoid cliche and claims about past trends.
+  Avoid cliche and claims about past trends. Don't let metaphors stretch across multiple paragraphs.
+  When injecting whimsy into the introduction, keep the beginning sentence professional.
 - **Flow**: Ensure that the cover letter flows smoothly from one paragraph to the next, and that
   each paragraph conveys a specific message.
 
