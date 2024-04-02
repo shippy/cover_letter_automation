@@ -34,6 +34,9 @@ If there are no substantial issues with the cover letter, or if the Cover_Letter
 make any more versions, you should use the `export_letter` tool to save the last draft of the cover
 letter and terminate the group chat. You should also terminate if the Cover_Letter_Writer has
 already exported the cover letter.
+
+If you're asking questions that don't yet have answers in the current context, pass them along to
+Client.
 """.strip()
 
 

@@ -8,6 +8,7 @@ from autogen import ChatResult, GroupChat, GroupChatManager, UserProxyAgent
 
 from cover_letter_automation.agents import (
     CompanyResearcher,
+    CoverLetterClient,
     Critic,
     JobDescriptionIngester,
     ResumeRetriever,
@@ -23,7 +24,7 @@ def setup_and_start_session(
     bing_config: dict[str, Any] | None = None,
 ) -> ChatResult:
     """Set up and start the group chat session."""
-    client = UserProxyAgent(name="Myself", llm_config=deepcopy(llm_config))
+    client = CoverLetterClient()
     jd_ingester = JobDescriptionIngester(job_description=job_description, llm_config=deepcopy(llm_config))
     if bing_config is not None:
         researcher = CompanyResearcher(llm_config=deepcopy(llm_config), bing_config=bing_config)
@@ -33,20 +34,20 @@ def setup_and_start_session(
 
     if bing_config is None:
         speaker_transitions = {
-            client: [jd_ingester],
+            client: [jd_ingester, critic],  # go straight to `critic` if chat closed without saving
             jd_ingester: [resume_reader],
             resume_reader: [writer],
             writer: [critic],
-            critic: [writer],
+            critic: [writer, client],
         }
     else:
         speaker_transitions = {
-            client: [jd_ingester],
+            client: [jd_ingester, critic],  # go straight to `critic` if chat closed without saving
             jd_ingester: [researcher],
             researcher: [researcher, resume_reader],
             resume_reader: [writer],
             writer: [critic],
-            critic: [writer],
+            critic: [writer, client],
         }
 
     group_chat = GroupChat(
