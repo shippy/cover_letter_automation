@@ -4,7 +4,7 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
-from autogen import ChatResult, GroupChat, GroupChatManager, UserProxyAgent
+from autogen import ChatResult, GroupChat, GroupChatManager
 
 from cover_letter_automation.agents import (
     CompanyResearcher,
