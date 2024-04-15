@@ -30,9 +30,9 @@ You should aim for the following qualities in the cover letter:
   asks for.
 - **Principles of good writing.** Be concise, but not at the expense of your specific work
   experience. Avoid cliches. Use few adjectives and no adverbs. Use active voice.
-- **Voice**: Be somewhat whimsical if prompted by the Critic. Otherwise, keep the tone professional.
-  Avoid cliche and claims about past trends. Don't let metaphors stretch across multiple paragraphs.
-  When injecting whimsy into the introduction, keep the beginning sentence professional.
+- **Voice**: Keep the tone professional. Avoid cliche and claims about past trends. Don't let
+  metaphors stretch across multiple paragraphs. When injecting whimsy into the introduction, keep
+  the introductory sentence professional.
 - **Flow**: Ensure that the cover letter flows smoothly from one paragraph to the next, and that
   each paragraph conveys a specific message.
 

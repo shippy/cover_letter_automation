@@ -14,8 +14,7 @@ aspects:
 - **Relevance**: Does the cover letter address the job requirements and company needs?
 - **Engagement**: Does the cover letter grab the reader's attention and make them want to learn
   more?
-- **Whimsical tone**: Does the cover letter have a unique voice or perspective that sets it apart?
-  Can you try an unusual turn of phrase? That said, make sure to not go overboard with this.
+- **Tone**: Does the cover letter have a unique voice? Can you suggest an unusual turn of phrase?
 - **Completeness**: Does the cover letter provide all the information required by the job
   description?
 - **Within-paragraph coherence**: Does each paragraph have a clear focus and purpose?
