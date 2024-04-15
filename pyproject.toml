@@ -93,25 +93,25 @@ target-version = "py311"
 force-exclude = true  # https://docs.astral.sh/ruff/settings/#force-exclude
 preview = true  # https://docs.astral.sh/ruff/preview/
 
-[tool.ruff.extend-per-file-ignores] # https://docs.astral.sh/ruff/settings/#extend-per-file-ignores
+[tool.ruff.lint.extend-per-file-ignores] # https://docs.astral.sh/ruff/settings/#extend-per-file-ignores
 # Ignore missing __init__.py files in tests.
 "tests/*" = ["INP001", "PLR2004"]
 
-[tool.ruff.flake8-tidy-imports]
+[tool.ruff.lint.flake8-tidy-imports]
 # Disallow all relative imports.
 ban-relative-imports = "all"
 
-[tool.ruff.mccabe]
+[tool.ruff.lint.mccabe]
 max-complexity = 10
 
-[tool.ruff.pep8-naming]
+[tool.ruff.lint.pep8-naming]
 # Allow Pydantic's `@validator` decorator to trigger class method treatment.
 classmethod-decorators = ["classmethod", "pydantic.validator", "pydantic.root_validator"]
 
-[tool.ruff.pycodestyle]
+[tool.ruff.lint.pycodestyle]
 max-doc-length = 100
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "numpy"
 
 [tool.poe.tasks] # https://poethepoet.natn.io/index.html
