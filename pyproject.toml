@@ -30,6 +30,7 @@ ruff = ">=0.2.2"
 safety = ">=2.3.5,!=2.3.5"
 shellcheck-py = ">=0.9.0"
 typeguard = ">=4.1.5"
+deepeval = "^0.21.26"
 
 [[tool.poetry.source]]  # https://python-poetry.org/docs/repositories/
 name = "pypi"
