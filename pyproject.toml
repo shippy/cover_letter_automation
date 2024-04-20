@@ -30,7 +30,7 @@ ruff = ">=0.2.2"
 safety = ">=2.3.5,!=2.3.5"
 shellcheck-py = ">=0.9.0"
 typeguard = ">=4.1.5"
-deepeval = "^0.21.26"
+deepeval = "^0.21.30"
 
 [[tool.poetry.source]]  # https://python-poetry.org/docs/repositories/
 name = "pypi"
@@ -146,3 +146,12 @@ convention = "numpy"
 
     [[tool.poe.tasks.test.sequence]]
     cmd = "coverage xml"
+
+    [tool.poe.tasks.eval]
+    help = "Run DeepEval on this package"
+
+    [[tool.poe.tasks.eval.sequence]]
+    cmd = "deepeval login"
+
+    [[tool.poe.tasks.eval.sequence]]
+    cmd = "deepeval test run tests/cover_letter_automation/agents/"
