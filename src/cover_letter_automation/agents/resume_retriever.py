@@ -24,6 +24,9 @@ Your role is to extract the key information from the resume that's relevant to t
 - **Education**: Relevant degrees or certifications.
 - **Projects**: Notable projects that demonstrate said skills.
 
+Don't retrieve experiences that aren't at least tangentially related to any of the job description
+requirements.
+
 Reformat all retrieved information into bullet points and provide it to the Writer.
 """.strip()
 
@@ -31,18 +34,24 @@ Reformat all retrieved information into bullet points and provide it to the Writ
 class ResumeRetriever(ConversableAgent):
     """An agent that retrieves the relevant bits of resume."""
 
-    def __init__(self, json_resume_path: Path, llm_config: dict[str, Any] | Literal[False], **kwargs: Any) -> None:
-        with json_resume_path.open("r") as f:
-            json_resume = json.load(f)
-            minified_resume = json.dumps(json_resume, separators=(",", ":"))
-
+    def __init__(
+        self, stringified_json_resume: str, llm_config: dict[str, Any] | Literal[False], **kwargs: Any
+    ) -> None:
+        """Create a resume retriever agent."""
         super().__init__(
             name="Resume_Retriever",
             description="An agent that retrieves the relevant bits of resume.",
-            system_message=_DEFAULT_RESUME_RETRIEVER_PROMPT.format(json_resume=minified_resume),
+            system_message=_DEFAULT_RESUME_RETRIEVER_PROMPT.format(json_resume=stringified_json_resume),
             llm_config=llm_config,
             human_input_mode="NEVER",
-            # retrieve_config={"task": "qa", "docs_path": "resume/", }  # noqa: ERA001
-            # TODO: Define smarter chunking
             **kwargs,
         )
+
+    @staticmethod
+    def read_json_resume(json_resume_path: Path) -> str:
+        """Read the JSON resume from the given path."""
+        with json_resume_path.open("r") as f:
+            content = json.load(f)
+            minified_content = json.dumps(content, separators=(",", ":"))
+
+        return minified_content
