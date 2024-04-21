@@ -73,10 +73,12 @@ def test_relevant_content_retrieved(
         [
             GEval(
                 name="Inclusion",
-                criteria=f"Determine that the output only includes experiences with the company {company}"
-                " and no other company",
                 evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT],
                 threshold=0.7,
+                evaluation_steps=[
+                    f"Check that the output contains the company name '{company}'",
+                    f"Check that the output does not contain any company name other than '{company}'",
+                ],
             )
         ],
     )
