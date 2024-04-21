@@ -150,8 +150,8 @@ convention = "numpy"
     [tool.poe.tasks.eval]
     help = "Run DeepEval on this package"
 
-    [[tool.poe.tasks.eval.sequence]]
-    cmd = "deepeval login"
+    # [[tool.poe.tasks.eval.sequence]]
+    # cmd = "deepeval login"
 
     [[tool.poe.tasks.eval.sequence]]
     cmd = "deepeval test run tests/cover_letter_automation/agents/"
