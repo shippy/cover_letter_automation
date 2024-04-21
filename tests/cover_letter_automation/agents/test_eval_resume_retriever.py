@@ -1,6 +1,7 @@
 """Run evals for the resume retriever agent."""
 
 import json
+from copy import deepcopy
 from typing import Any
 
 import pytest
@@ -35,21 +36,21 @@ def resume_retriever_agent(llm_config: dict[str, Any]) -> ResumeRetriever:
                 "position": "Senior Data/LLM Generalist",
                 "startDate": "2020-01-01",
                 "endDate": "2022-01-01",
-                "summary": "I did some cool stuff.",
+                "summary": "I did machine learning and nothing else.",
             },
             {
                 "company": "ČEZ",
                 "position": "Janitor",
                 "startDate": "2019-01-01",
                 "endDate": "2020-01-01",
-                "summary": "I cleaned many offices.",
+                "summary": "I cleaned many offices and nothing else.",
             },
         ],
     }
     stringified_json_resume = json.dumps(json_resume, separators=(",", ":"))
     return ResumeRetriever(
         stringified_json_resume=stringified_json_resume,
-        llm_config=llm_config,
+        llm_config=deepcopy(llm_config),
     )
 
 
@@ -75,6 +76,7 @@ def test_relevant_content_retrieved(
                 criteria=f"Determine that the output only includes experiences with the company {company}"
                 " and no other company",
                 evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT],
+                threshold=0.7,
             )
         ],
     )

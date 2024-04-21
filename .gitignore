@@ -39,3 +39,4 @@ cover_letters/
 !cover_letters/.gitkeep
 
 .deepeval
+.deepeval-cache.json
