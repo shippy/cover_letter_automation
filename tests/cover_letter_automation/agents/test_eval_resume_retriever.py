@@ -6,8 +6,8 @@ from typing import Any
 import pytest
 from autogen import Agent, UserProxyAgent
 from deepeval import assert_test
-from deepeval.metrics import FaithfulnessMetric
-from deepeval.test_case import LLMTestCase
+from deepeval.metrics import GEval
+from deepeval.test_case import LLMTestCase, LLMTestCaseParams
 
 from cover_letter_automation.agents.resume_retriever import ResumeRetriever
 
@@ -42,7 +42,7 @@ def resume_retriever_agent(llm_config: dict[str, Any]) -> ResumeRetriever:
                 "position": "Janitor",
                 "startDate": "2019-01-01",
                 "endDate": "2020-01-01",
-                "summary": "I did some less cool stuff.",
+                "summary": "I cleaned many offices.",
             },
         ],
     }
@@ -68,6 +68,13 @@ def test_relevant_content_retrieved(
     chat_outcome = get_chat_outcome(user_proxy, resume_retriever_agent, message)
 
     assert_test(
-        LLMTestCase(input=message, actual_output=chat_outcome, retrieval_context=[company]),
-        [FaithfulnessMetric(threshold=0.8)],
+        LLMTestCase(input=message, actual_output=chat_outcome, context=[company]),
+        [
+            GEval(
+                name="Inclusion",
+                criteria=f"Determine that the output only includes experiences with the company {company}"
+                " and no other company",
+                evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT],
+            )
+        ],
     )
