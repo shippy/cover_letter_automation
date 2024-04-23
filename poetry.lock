@@ -776,13 +776,13 @@ files = [
 
 [[package]]
 name = "deepeval"
-version = "0.21.30"
+version = "0.21.32"
 description = "The open-source evaluation framework for LLMs."
 optional = false
 python-versions = "*"
 files = [
-    {file = "deepeval-0.21.30-py3-none-any.whl", hash = "sha256:bcac335aa4a0087d87598ebecfe79d564be40ed6f9c095aff2131caf4abecc45"},
-    {file = "deepeval-0.21.30.tar.gz", hash = "sha256:1e935649e0b5d5966d295f51d8123f84348f9b998eb2facbfbbf0d6ca0fcc897"},
+    {file = "deepeval-0.21.32-py3-none-any.whl", hash = "sha256:a009e11fe911f042ec72cf0130c4173bb13261270d59a46010ae64e39a213891"},
+    {file = "deepeval-0.21.32.tar.gz", hash = "sha256:6dba938a71ce7973ecbbc792038bff78d04b6517f24b22b438eca342cbbfe4fc"},
 ]
 
 [package.dependencies]
