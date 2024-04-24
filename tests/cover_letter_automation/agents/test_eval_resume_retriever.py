@@ -5,21 +5,13 @@ from copy import deepcopy
 from typing import Any
 
 import pytest
-from autogen import Agent, UserProxyAgent
+from autogen import UserProxyAgent
 from deepeval import assert_test
 from deepeval.metrics import GEval
 from deepeval.test_case import LLMTestCase, LLMTestCaseParams
+from tests.cover_letter_automation.agents.utils import get_chat_outcome
 
 from cover_letter_automation.agents.resume_retriever import ResumeRetriever
-
-
-def get_chat_outcome(user_proxy: UserProxyAgent, agent_under_test: Agent, message: str) -> str:
-    """Get the outcome of a two-agent chat."""
-    result = user_proxy.initiate_chat(
-        recipient=agent_under_test, message=message, clear_history=True, max_turns=1, summary_method="last_msg"
-    )
-
-    return str(result.summary)
 
 
 @pytest.fixture()
