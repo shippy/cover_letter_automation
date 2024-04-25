@@ -36,6 +36,20 @@ def normal_cases_dataset(normal_cases: list[LLMTestCase]) -> EvaluationDataset:
     return EvaluationDataset(test_cases=normal_cases)
 
 
+def test_critic_writes_good_critique(normal_cases_dataset: EvaluationDataset) -> None:
+    """Evaluate that output makes sense."""
+    g_eval_metric = GEval(
+        name="Good criticism present",
+        evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT],
+        evaluation_steps=[
+            "Feedback is structured into several points.",
+            "Each point in the critique is meaningful, constructive, and well-made.",
+        ],
+    )
+    for test_case in normal_cases_dataset.test_cases:
+        assert_test(test_case, metrics=[g_eval_metric])
+
+
 @pytest.fixture()
 def language_errors(user_proxy: UserProxyAgent, critic_agent: Critic) -> list[LLMTestCase]:
     """Convert the loaded case files int LLMTestCases."""
@@ -57,27 +71,7 @@ def test_critic_catches_language_errors(language_error_dataset: EvaluationDatase
     g_eval_metric = GEval(
         name="Language criticism present",
         evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT],
-        evaluation_steps=["Feedback from the actual output points out the spelling and/or grammar errors."],
+        evaluation_steps=["Feedback indicates the presence of spelling and/or grammar errors (among other problems)."],
     )
     for test_case in language_error_dataset:
         assert_test(test_case, metrics=[g_eval_metric])
-
-
-def test_critic_writes_good_critique(normal_cases_dataset: EvaluationDataset) -> None:
-    """Evaluate that output makes sense."""
-    g_eval_metric = GEval(
-        name="Good criticism present",
-        evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT],
-        evaluation_steps=[
-            "Feedback is structured into several points.",
-            "Each point is meaningful, constructive, and well-made.",
-        ],
-    )
-    for test_case in normal_cases_dataset.test_cases:
-        assert_test(test_case, metrics=[g_eval_metric])
-
-
-# def test_critic_catches_conceptual_errors(
-#     user_proxy: UserProxyAgent, critic_agent: Critic, test_case: LLMTestCase
-# ) -> None:
-#     """When given a cover letter that over-focuses on a particular step, the Critic should note this."""
