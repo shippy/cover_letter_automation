@@ -1,6 +1,12 @@
 """General utilities for evals."""
 
+import contextlib
+import json
+from pathlib import Path
+
+import yaml
 from autogen import Agent, UserProxyAgent
+from pydantic import BaseModel, Field, ValidationError
 
 
 def get_chat_outcome(user_proxy: UserProxyAgent, agent_under_test: Agent, message: str) -> str:
@@ -10,3 +16,36 @@ def get_chat_outcome(user_proxy: UserProxyAgent, agent_under_test: Agent, messag
     )
 
     return str(result.summary)
+
+
+class LLMTestCaseInput(BaseModel):
+    """Definition of the test case ingredients pulled from a JSON."""
+
+    jd_extract: str
+    resume_extract: str
+    cover_letter_draft: str | None = Field(None, description="Optional draft of a cover letter")
+
+    def get_input(self) -> str:
+        """Create a single-shot input in lieu of a longer simulated conversation."""
+        result = f"""Relevant items from the job description are here: \n\n{self.jd_extract}\n
+        Relevant items from the resume are here: \n\n{self.resume_extract}"""
+        if self.cover_letter_draft:
+            result += f"\n\nThe cover letter draft is here: \n\n{self.cover_letter_draft}"
+
+        return result
+
+    @staticmethod
+    def load_from_file(input_path: Path) -> list["LLMTestCaseInput"]:
+        """Load the test case inputs from a YAML or JSON file"""
+        with input_path.open("r") as f:
+            if input_path.suffix in {".yml", ".yaml"}:
+                all_inputs = yaml.safe_load(f)
+            elif input_path.suffix in {".json", ".jsonl"}:
+                all_inputs = json.load(f)
+
+        outputs = []
+        for each in all_inputs:
+            with contextlib.suppress(ValidationError):
+                outputs.append(LLMTestCaseInput(**each))
+
+        return outputs

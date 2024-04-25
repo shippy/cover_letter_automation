@@ -17,6 +17,7 @@ def llm_config(model: str | None = os.environ.get("OPENAI_API_MODEL")) -> dict[s
                 "api_key": os.environ["OPENAI_API_KEY"],
             }
         ],
+        "cache_seed": None,
     }
 
 
