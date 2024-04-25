@@ -1,8 +1,8 @@
 [tool.poetry]  # https://python-poetry.org/docs/pyproject/
 name = "cover_letter_automation"
-version = "0.2.0"
+version = "0.3.0"
 description = "A Python package for ingesting job descriptions & resumes, and crafting cover letters that use the latter to satisfy the former"
-authors = []
+authors = ["Simon Podhajsky <simon.podhajsky@gmail.com>"]
 license = "Proprietary"
 readme = "README.md"
 repository = "https://github.com/shippy/cover_letter_automation/"
