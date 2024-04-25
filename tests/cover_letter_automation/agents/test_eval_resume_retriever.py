@@ -46,6 +46,7 @@ def resume_retriever_agent(llm_config: dict[str, Any]) -> ResumeRetriever:
     )
 
 
+@pytest.mark.eval()
 @pytest.mark.parametrize(
     ("job_description", "company"),
     [

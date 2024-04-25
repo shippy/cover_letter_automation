@@ -75,6 +75,9 @@ warn_required_dynamic_aliases = true
 warn_untyped_fields = true
 
 [tool.pytest.ini_options]  # https://docs.pytest.org/en/latest/reference/reference.html#ini-options-ref
+markers = [
+    "eval: a LLM-involved test",
+]
 addopts = "--color=yes --doctest-modules --failed-first --strict-config --strict-markers --typeguard-packages=cover_letter_automation --verbosity=2 --junitxml=reports/pytest.xml"
 filterwarnings = [
     "error",
@@ -146,7 +149,8 @@ convention = "numpy"
     help = "Test this package"
 
     [[tool.poe.tasks.test.sequence]]
-    cmd = "coverage run"
+    # Don't run eval tests by default; don't even collect them, since they require OPENAI_API_KEY
+    cmd = "coverage run -m pytest -m 'not eval' --ignore=tests/cover_letter_automation/agents"
 
     [[tool.poe.tasks.test.sequence]]
     cmd = "coverage report"

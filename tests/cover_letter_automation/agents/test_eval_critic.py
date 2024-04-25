@@ -33,6 +33,7 @@ _normal_cases_dataset = _make_critic_dataset("normal_inputs.yaml")
 _language_error_dataset = _make_critic_dataset("language_errors.yaml")
 
 
+@pytest.mark.eval()
 @pytest.mark.parametrize("test_case", _normal_cases_dataset)
 def test_critic_writes_good_critique(test_case: LLMTestCase) -> None:
     """Evaluate that output makes sense."""
@@ -48,6 +49,7 @@ def test_critic_writes_good_critique(test_case: LLMTestCase) -> None:
     assert_test(test_case, metrics=[g_eval_metric])
 
 
+@pytest.mark.eval()
 @pytest.mark.parametrize("test_case", _language_error_dataset)
 def test_critic_catches_language_errors(test_case: LLMTestCase) -> None:
     """When given a cover letter with errors in language and grammar, the Critic should note these."""
