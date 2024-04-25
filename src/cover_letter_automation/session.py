@@ -28,7 +28,9 @@ def setup_and_start_session(
     jd_ingester = JobDescriptionIngester(job_description=job_description, llm_config=deepcopy(llm_config))
     if bing_config is not None:
         researcher = CompanyResearcher(llm_config=deepcopy(llm_config), bing_config=bing_config)
-    resume_reader = ResumeRetriever(llm_config=deepcopy(llm_config), json_resume_path=json_resume_path)
+    resume_reader = ResumeRetriever(
+        llm_config=deepcopy(llm_config), stringified_json_resume=ResumeRetriever.read_json_resume(json_resume_path)
+    )
     writer = Writer(llm_config=deepcopy(llm_config))
     critic = Critic(llm_config=deepcopy(llm_config))
 
