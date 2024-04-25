@@ -1,7 +1,6 @@
 """Evals for the Critic agent."""
 
 from pathlib import Path
-from typing import Any
 
 import pytest
 from autogen import UserProxyAgent
@@ -17,10 +16,9 @@ _user_proxy = make_agent(UserProxyAgent, description="Generic question-asker.", 
 _critic_agent = make_agent(Critic)
 
 
-def _make_critic_dataset(alias: str, file_name: str) -> EvaluationDataset:
+def _make_critic_dataset(file_name: str) -> EvaluationDataset:
     fpath = Path(__file__).parent / f"inputs/critic/{file_name}"
     return EvaluationDataset(
-        # alias=alias,
         test_cases=[
             LLMTestCase(
                 input=case.get_input(),
@@ -31,8 +29,8 @@ def _make_critic_dataset(alias: str, file_name: str) -> EvaluationDataset:
     )
 
 
-_normal_cases_dataset = _make_critic_dataset("Normal Cover Letter Critique Cases", "normal_inputs.yaml")
-_language_error_dataset = _make_critic_dataset("Cover Letters with Language Errors", "language_errors.yaml")
+_normal_cases_dataset = _make_critic_dataset("normal_inputs.yaml")
+_language_error_dataset = _make_critic_dataset("language_errors.yaml")
 
 
 @pytest.mark.parametrize("test_case", _normal_cases_dataset)
