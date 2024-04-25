@@ -2,11 +2,32 @@
 
 import contextlib
 import json
+import os
+from copy import deepcopy
 from pathlib import Path
+from typing import Any, TypeVar
 
 import yaml
 from autogen import Agent, UserProxyAgent
 from pydantic import BaseModel, Field, ValidationError
+
+AnyAgent = TypeVar("AnyAgent", bound=Agent)
+
+_DEFAULT_LLM_CONFIG = {
+    "config_list": [
+        {
+            "model": os.environ.get("OPENAI_API_MODEL") or "gpt-4-turbo-preview",
+            "api_key": os.environ["OPENAI_API_KEY"],
+        }
+    ],
+    "cache_seed": None,
+}
+
+
+def make_agent(agent: AnyAgent, llm_config: dict[str, Any] = _DEFAULT_LLM_CONFIG, **kwargs: Any) -> Agent:
+    """Instantiate an agent for test purposes."""
+    _llm_config = deepcopy(llm_config)
+    return agent(_llm_config, **kwargs)
 
 
 def get_chat_outcome(user_proxy: UserProxyAgent, agent_under_test: Agent, message: str) -> str:
@@ -36,7 +57,7 @@ class LLMTestCaseInput(BaseModel):
 
     @staticmethod
     def load_from_file(input_path: Path) -> list["LLMTestCaseInput"]:
-        """Load the test case inputs from a YAML or JSON file"""
+        """Load the test case inputs from a YAML or JSON file."""
         with input_path.open("r") as f:
             if input_path.suffix in {".yml", ".yaml"}:
                 all_inputs = yaml.safe_load(f)

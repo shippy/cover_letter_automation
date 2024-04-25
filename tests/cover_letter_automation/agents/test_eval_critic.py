@@ -9,69 +9,57 @@ from deepeval import assert_test
 from deepeval.dataset import EvaluationDataset
 from deepeval.metrics import GEval
 from deepeval.test_case import LLMTestCase, LLMTestCaseParams
-from tests.cover_letter_automation.agents.utils import LLMTestCaseInput, get_chat_outcome
+from tests.cover_letter_automation.agents.utils import LLMTestCaseInput, get_chat_outcome, make_agent
 
 from cover_letter_automation.agents import Critic
 
-
-@pytest.fixture()
-def critic_agent(llm_config: dict[str, Any]) -> Critic:
-    """Instantiate the Critic agent for test purposes."""
-    return Critic(llm_config)
+_user_proxy = make_agent(UserProxyAgent, description="Generic question-asker.", human_input_mode="NEVER")
+_critic_agent = make_agent(Critic)
 
 
-@pytest.fixture()
-def normal_cases(user_proxy: UserProxyAgent, critic_agent: Critic) -> list[LLMTestCase]:
-    """Convert the loaded case files int LLMTestCases."""
-    _normal_cases = LLMTestCaseInput.load_from_file(Path(__file__).parent / "inputs/critic/normal_inputs.yaml")
-    return [
-        LLMTestCase(input=case.get_input(), actual_output=get_chat_outcome(user_proxy, critic_agent, case.get_input()))
-        for case in _normal_cases
-    ]
+def _make_critic_dataset(alias: str, file_name: str) -> EvaluationDataset:
+    fpath = Path(__file__).parent / f"inputs/critic/{file_name}"
+    return EvaluationDataset(
+        # alias=alias,
+        test_cases=[
+            LLMTestCase(
+                input=case.get_input(),
+                actual_output=get_chat_outcome(_user_proxy, _critic_agent, case.get_input()),
+            )
+            for case in LLMTestCaseInput.load_from_file(fpath)
+        ],
+    )
 
 
-@pytest.fixture()
-def normal_cases_dataset(normal_cases: list[LLMTestCase]) -> EvaluationDataset:
-    """Convert the loaded LLMTestCases into an EvaluationDataset."""
-    return EvaluationDataset(test_cases=normal_cases)
+_normal_cases_dataset = _make_critic_dataset("Normal Cover Letter Critique Cases", "normal_inputs.yaml")
+_language_error_dataset = _make_critic_dataset("Cover Letters with Language Errors", "language_errors.yaml")
 
 
-def test_critic_writes_good_critique(normal_cases_dataset: EvaluationDataset) -> None:
+@pytest.mark.parametrize("test_case", _normal_cases_dataset)
+def test_critic_writes_good_critique(test_case: LLMTestCase) -> None:
     """Evaluate that output makes sense."""
     g_eval_metric = GEval(
         name="Good criticism present",
         evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT],
         evaluation_steps=[
+            "Feedback in the actual output relates to the cover letter in the input."
             "Feedback is structured into several points.",
             "Each point in the critique is meaningful, constructive, and well-made.",
         ],
     )
-    for test_case in normal_cases_dataset.test_cases:
-        assert_test(test_case, metrics=[g_eval_metric])
+    assert_test(test_case, metrics=[g_eval_metric])
 
 
-@pytest.fixture()
-def language_errors(user_proxy: UserProxyAgent, critic_agent: Critic) -> list[LLMTestCase]:
-    """Convert the loaded case files int LLMTestCases."""
-    _language_cases = LLMTestCaseInput.load_from_file(Path(__file__).parent / "inputs/critic/language_errors.yaml")
-    return [
-        LLMTestCase(input=case.get_input(), actual_output=get_chat_outcome(user_proxy, critic_agent, case.get_input()))
-        for case in _language_cases
-    ]
-
-
-@pytest.fixture()
-def language_error_dataset(language_errors: list[LLMTestCase]) -> EvaluationDataset:
-    """Convert the loaded LLMTestCases into an EvaluationDataset."""
-    return EvaluationDataset(test_cases=language_errors)
-
-
-def test_critic_catches_language_errors(language_error_dataset: EvaluationDataset) -> None:
+@pytest.mark.parametrize("test_case", _language_error_dataset)
+def test_critic_catches_language_errors(test_case: LLMTestCase) -> None:
     """When given a cover letter with errors in language and grammar, the Critic should note these."""
     g_eval_metric = GEval(
         name="Language criticism present",
-        evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT],
-        evaluation_steps=["Feedback indicates the presence of spelling and/or grammar errors (among other problems)."],
+        # Skip LLMTestCaseParams.INPUT since the presence of issues there seems to confuse GEval.
+        evaluation_params=[LLMTestCaseParams.ACTUAL_OUTPUT],
+        evaluation_steps=[
+            "Feedback in the actual output indicates the presence of spelling and/or grammar errors in the "
+            "inputted cover letter (among other problems)."
+        ],
     )
-    for test_case in language_error_dataset:
-        assert_test(test_case, metrics=[g_eval_metric])
+    assert_test(test_case, metrics=[g_eval_metric])
