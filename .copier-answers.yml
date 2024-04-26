@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: v0.3.0
+_commit: v0.3.1
 _src_path: gh:lukin0110/poetry-copier.git
 ci: github
 description: A Python package for ingesting job descriptions & resumes, and crafting
