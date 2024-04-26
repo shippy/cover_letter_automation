@@ -50,7 +50,7 @@ jobs:
         with:
           imageName: ghcr.io/${{ github.repository }}
           cacheFrom: ghcr.io/${{ github.repository }}:${{ env.NORMALIZED_TAG }}
-          imageTag: ${{ env.TAG }}
+          imageTag: ${{ env.NORMALIZED_TAG }}
           push: always
 
       - name: Run lint
