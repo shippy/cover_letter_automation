@@ -1,0 +1,51 @@
+- jd_extract: |-
+    ### Requirements
+
+    - **Experience and Expertise**:
+      - Minimum 2 years of project experience.
+      - At least 1 year of experience using AI/GenAI technologies (e.g., NLP, machine learning).
+    - **Technical Skills**:
+      - Knowledge of at least one of the following AI/GenAI/Cloud technologies: IBM, Google, Amazon, Microsoft, or other relevant technologies.
+      - Programming knowledge is considered an advantage.
+    - **Soft Skills and Other Qualifications**:
+      - High level of communication skills, capable of interacting effectively with both IT and Business teams.
+      - Orientation in new technologies, with a keenness to learn and discover new things.
+      - Professional proficiency in English and Czech.
+      - Willingness to travel from time to time.
+
+    ### Responsibilities
+
+    - **Design and Development**:
+      - Translate business requirements into a solution and conversational design for a virtual assistant.
+      - Design, develop, train, and debug virtual assistants and GenAI solutions using AI/GenAI technologies (e.g., IBM, Google, Amazon, Microsoft, and related cloud technologies).
+    - **Evaluation and Improvement**:
+      - Evaluate results of AI/GenAI solutions and identify ways for further improvements.
+    - **Collaboration and Expertise Building**:
+      - Become an expert in cognitive technologies.
+      - Cooperate with client business and IT, direct team members (consultants, architects, developers), and other related parties (e.g., IBM Cloud division, Google, Microsoft, Amazon, professional communities).
+
+    ### Company
+
+    - **Name**: IBM
+    - **About**: IBM Consulting is IBM’s consulting and global professional services business, specializing in business and technology transformation. It offers strategy, experience, technology, and operations services to some of the most innovative and valuable companies in the world. IBM Consulting emphasizes the acceleration of clients’ businesses through collaboration and believes in the responsible use of technology to benefit people, partners, and the planet.
+  resume_extract: |-
+    **Name**: Šimon Podhajský
+
+    ### Experience
+    - **Senior Data Engineer at Pure Storage** (Starting from 2024-02-01): Developed a data platform and LLM-based enablements for data science and analytics teams, including creation of the Octillion Signature Maker using Autogen-/Langchain-based API for generating regexes and JSON output.
+    - **Senior Data Generalist at Nano Energies (Digital Energy Services)** (2023-02-20 to 2023-10-31): Utilized data science and engineering in grid flexibility aggregation, including the use of mixed-integer programming for optimization.
+    - **Data Lead at iLife Technologies** (2021-10-01 to 2022-10-01): Led the creation of an analytics platform for a B2B2C SaaS startup, including overseeing an XGBoost implementation for customer churn modeling.
+    - **Data Scientist at SRI International / Stanford CNS Lab** (2018-02-01 to 2022-04-01): Contributed to translational neuroscience and machine learning research, including the design and implementation of a data processing ETL system.
+
+    ### Skills
+    - **Programming Languages**: Proficient in Python, R, SQL.
+    - **Data Tools**: Experienced with dbt, Terraform, AWS, including SageMaker for AI/ML projects.
+    - **DevOps Tools**: Competent in Docker, Airflow, Ansible, Terraform, and AWS.
+    - **AI/GenAI Technologies**: Demonstrated experience in developing AI/GenAI solutions, particularly in data science and machine learning applications.
+
+    ### Education
+    - **B.S. in Cognitive Science from Yale University** (2011-09 to 2015-12): Coursework in Artificial Intelligence, Computational Vision, Language & Computation.
+
+    ### Projects
+    - **Cover Letter Automation** (Creator, starting from 2024-04-01): Developed an Autogen-based multi-agent system for generating cover letter drafts, demonstrating the use of LLM and AI technologies.
+    - **JournalArticle.chat** (Creator, 2023-06-01 to 2023-09-01): Created a chatbot to assist researchers in conversing with uploaded papers, incorporating OpenAI API for Retrieval-Augmented Generation.

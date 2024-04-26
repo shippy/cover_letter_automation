@@ -1,0 +1,84 @@
+- jd_extract: |-
+    ### Requirements:
+
+    - **Language Skills**: Czech at a native/C2 level and English at a B2/C1 level.
+    - **Experience**: At least 2 years of experience working in the field of Artificial Intelligence.
+    - **Education**: Bachelor’s degree in computer science, Data Science, Statistics, or a related field. A Master’s degree is considered a plus.
+    - **Communication Skills**: Excellent communication abilities, capable of presenting findings to non-technical audiences and engaging in technical conversations.
+    - **Programming Knowledge**: Experience with programming languages such as Python, JavaScript or C++, alongside some knowledge of SQL and Git.
+    - **AI and Cloud Services**: Understanding and experience with Generative AI and text embedding; familiarity with major cloud environments and their AI services (e.g., Azure, AWS, Google Cloud) is highly valued.
+    - **Conversational AI Familiarity**: Experience with any conversational AI platform is a significant advantage.
+    - **Data Visualization**: Basic understanding of data visualization.
+    - **Analytical Skills**: Strong analytical and problem-solving capabilities.
+    - **Teamwork and Growth Mindset**: Ability to work effectively in a collaborative team environment and a passion for learning and continuous improvement.
+
+    ### Responsibilities:
+
+    - **AI Solution Design and Implementation**: Support the project manager in the ideation/design and delivery/implementation of specific AI solution components.
+    - **Development Collaboration**: Work with developers in building and improving solutions based on conversational AI, generative AI, and other innovative services and technologies.
+    - **Project Proposal Creation**: Assist managers in crafting and executing project proposals for AI-driven solutions with international impact.
+    - **Solution Architecture**: Participate in team discussions regarding solution architecture.
+    - **Collaboration and Communication**: Communicate and collaborate with delivery partners and project stakeholders; present delivery achievements and project outcomes.
+
+    ### Company:
+
+    - **Name**: Accenture Czech Republic
+    - **Location**: Prague, Prague, Czechia
+    - **Industry**: Professional Services/Consulting
+    - **Work Environment**: A collaborative culture that values diversity of thought and creative solutions, with opportunities for professional growth and development in AI and decision sciences. Part of a credible corporate workforce and a major delivery partner in Central Europe.
+
+  resume_extract: |-
+    ### Name:
+    - Šimon Podhajský
+
+    ### Experience:
+    - **Pure Storage** (Senior Data Engineer): Developed a data platform and LLM-based enablements, including creating the Octillion Signature Maker with Autogen-/Langchain-based API and LLM to generate regexes and JSON output.
+    - **Nano Energies (Digital Energy Services)** (Senior Data Generalist): Used data science and data engineering for grid flexibility aggregation, including optimizing device distribution for energy bids.
+    - **SRI International / Stanford CNS Lab** (Data Scientist): Worked on translational neuroscience, machine learning, and interdisciplinary research, including designing and implementing an ETL system and a data processing pipeline.
+
+    ### Skills:
+    - **Programming Languages**: Python, R, SQL.
+    - **Data Tools**: tidyverse, pandas, Jupyter, dbt, Snowflake.
+    - **DevOps Tools**: Docker, Airflow, Terraform, AWS, Git.
+    - **AI and Cloud Services**: Experience with Autogen-/Langchain-based API, AWS SageMaker.
+
+    ### Education:
+    - **Yale University**, B.S. in Cognitive Science: Courses included Artificial Intelligence, Computational Vision, and Data Structures & Programming Techniques.
+
+    ### Projects:
+    - **JournalArticle.chat**: A chatbot helping researchers converse with the papers they upload, using OpenAI API for embeddings and responses.
+    - **ADK Wrapped**: A 'Spotify Wrapped' clone for high-school debaters, including using ChatGPT for web app development assistance.
+
+  cover_letter_draft: |-
+    Dear Hiring Manager,
+
+    I am excited to submit my application for the AI Solution Design and Implementation position at
+    Accenture Czech Republic, as advertised. With a Bachelor's degree in Cognitive Science from Yale
+    University and extensive experience in data engineering, data science, and AI development, I am
+    confident in my ability to contribute effectively to your team.
+
+    My background in Artificial Intelligence, highlighted by practical experience at Pure Storage,
+    Nano Energies, and SRI International, aligns closely with the requirements of the role. At Pure
+    Storage, I spearheaded the development of a data platform and LLM-based enablements, showcasing
+    my proficiency in designing innovative solutions. This experience, coupled with my robust
+    programming skills in Python, R, and SQL, equips me to support the project manager in ideation,
+    design, and implementation of AI solutions at Accenture.
+
+    In my role at Nano Energies, I utilized data science and data engineering to optimize grid
+    flexibility aggregation, demonstrating my analytical prowess and problem-solving abilities.
+    Moreover, my project experience, such as developing 'JournalArticle.chat' and 'ADK Wrapped,'
+    underscores my familiarity with Conversational AI and cloud services, aligning with your
+    requirements for conversational AI familiarity and AI and Cloud Services expertise.
+
+    I am particularly drawn to Accenture's collaborative culture and commitment to professional
+    growth in AI and decision sciences. The opportunity to contribute to meaningful projects with
+    global impact excites me, and I am eager to leverage my skills in AI solution design, development
+    collaboration, and project proposal creation to drive innovative solutions at Accenture Czech Republic.
+
+    I look forward to the possibility of discussing how my skills and experiences align with the
+    needs of your team. Thank you for considering my application. I am keen to bring my passion for
+    AI and data-driven solutions to Accenture and contribute to the advancement of your projects.
+
+    Warm regards,
+
+    Šimon Podhajský

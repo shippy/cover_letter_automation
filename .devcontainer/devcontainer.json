@@ -6,7 +6,6 @@
     "devcontainer"
   ],
   "shutdownAction": "stopCompose",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/cover_letter_automation/,type=bind,consistency=delegated",
   "workspaceFolder": "/workspaces/cover_letter_automation/",
   "remoteUser": "root",
   "overrideCommand": true,
@@ -14,11 +13,14 @@
   "mounts": [
     "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock,consistency=consistent"
   ],
+  "containerEnv": {
+    "OPENAI_API_KEY": "${localEnv:OPENAI_CL_KEY}"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
         "charliermarsh.ruff",
-        "eamodio.gitlens",
+        "maattdd.gitless",
         "github.copilot",
         "ms-azuretools.vscode-docker",
         "ms-python.mypy-type-checker",
@@ -33,8 +35,8 @@
           "reports/coverage.xml"
         ],
         "editor.codeActionsOnSave": {
-          "source.fixAll": true,
-          "source.organizeImports": true
+          "source.fixAll": "always",
+          "source.organizeImports": "always"
         },
         "editor.formatOnSave": true,
         "editor.rulers": [
@@ -52,7 +54,7 @@
         "python.defaultInterpreterPath": "/opt/cover_letter_automation-env/bin/python",
         "python.terminal.activateEnvironment": false,
         "python.testing.pytestEnabled": true,
-        "remote.containers.copyGitConfig": true,
+        "dev.containers.copyGitConfig": true,
         "ruff.importStrategy": "fromEnvironment",
         "ruff.logLevel": "warn",
         "terminal.integrated.defaultProfile.linux": "zsh",

@@ -1,8 +1,8 @@
 [tool.poetry]  # https://python-poetry.org/docs/pyproject/
 name = "cover_letter_automation"
-version = "0.2.0"
+version = "0.3.0"
 description = "A Python package for ingesting job descriptions & resumes, and crafting cover letters that use the latter to satisfy the former"
-authors = []
+authors = ["Simon Podhajsky <simon.podhajsky@gmail.com>"]
 license = "Proprietary"
 readme = "README.md"
 repository = "https://github.com/shippy/cover_letter_automation/"
@@ -30,6 +30,8 @@ ruff = ">=0.2.2"
 safety = ">=2.3.5,!=2.3.5"
 shellcheck-py = ">=0.9.0"
 typeguard = ">=4.1.5"
+deepeval = "^0.21.30"
+types-pyyaml = "^6.0.12.20240311"
 
 [[tool.poetry.source]]  # https://python-poetry.org/docs/repositories/
 name = "pypi"
@@ -73,8 +75,17 @@ warn_required_dynamic_aliases = true
 warn_untyped_fields = true
 
 [tool.pytest.ini_options]  # https://docs.pytest.org/en/latest/reference/reference.html#ini-options-ref
-addopts = "--color=yes --doctest-modules --exitfirst --failed-first --strict-config --strict-markers --typeguard-packages=cover_letter_automation --verbosity=2 --junitxml=reports/pytest.xml"
-filterwarnings = ["error", "ignore::DeprecationWarning"]
+markers = [
+    "eval: a LLM-involved test",
+]
+addopts = "--color=yes --doctest-modules --failed-first --strict-config --strict-markers --typeguard-packages=cover_letter_automation --verbosity=2 --junitxml=reports/pytest.xml"
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning",
+    "ignore::pytest.PytestUnraisableExceptionWarning",
+    "ignore::pytest.PytestAssertRewriteWarning",
+    "ignore::UserWarning",
+]
 testpaths = ["src", "tests"]
 xfail_strict = true
 log_file_level = "info"
@@ -138,10 +149,20 @@ convention = "numpy"
     help = "Test this package"
 
     [[tool.poe.tasks.test.sequence]]
-    cmd = "coverage run"
+    # Don't run eval tests by default; don't even collect them, since they require OPENAI_API_KEY
+    cmd = "coverage run -m pytest -m 'not eval' --ignore=tests/cover_letter_automation/agents"
 
     [[tool.poe.tasks.test.sequence]]
     cmd = "coverage report"
 
     [[tool.poe.tasks.test.sequence]]
     cmd = "coverage xml"
+
+    [tool.poe.tasks.eval]
+    help = "Run DeepEval on this package"
+
+    [[tool.poe.tasks.eval.sequence]]
+    cmd = "deepeval login --use-existing"
+
+    [[tool.poe.tasks.eval.sequence]]
+    cmd = "deepeval test run tests/cover_letter_automation/agents/"

@@ -1,0 +1,29 @@
+- jd_extract: |-
+    ### Requirements
+    - **Education:** At least a BSc in Aerospace Engineering or a related field.
+    
+    ### Company
+
+    - **Name:** NASA
+    - **Location:** Houston, TX, USA
+
+  resume_extract: |-
+    - **Name:** Test Application
+
+    ### Experience:
+    - **SpaceX** (Mechanical Engineer): Worked on the design and development of rocket engines and spacecraft.
+
+    ### Education:
+    - **University of California, Berkeley**, B.S. in Mechanical Engineering
+  cover_letter_draft: |-
+    Dear Sir/Madam,
+
+    I am wryting a letter to expresss my deep motivation to become an Airospace Engineer at NASA.
+
+    I have a Bachelor's degree in Mechanical Engineering from the University of California, Berkeley,
+    and I have been working as a Mechanical Engineer at SpaceX for the past 3 years. I have experience
+    working on the design and development of rocket engines and spacecraft, and I have a strong
+    passion for space exploration and innovation.
+
+    Yours sincerely
+    Test Applicant

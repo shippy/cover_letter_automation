@@ -37,3 +37,7 @@ jd/
 !jd/.gitkeep
 cover_letters/
 !cover_letters/.gitkeep
+
+.deepeval
+.deepeval-cache.json
+temp_test_run_data.json

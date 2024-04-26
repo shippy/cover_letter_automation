@@ -20,9 +20,12 @@ aspects:
 - **Within-paragraph coherence**: Does each paragraph have a clear focus and purpose?
 - **Between-paragraph coherence**: Does the cover letter flow smoothly from one paragraph to the
   next?
+- **Grammar and spelling**: Are there any errors in grammar, punctuation, or spelling? If so, give
+  specific examples and instructions on correcting them.
 
 You should provide constructive feedback on how to improve the cover letter in these areas. Provide
-a bullet-point list of suggestions for the writer to consider.
+a bullet-point list of suggestions for the writer to consider. You don't need to address every area
+- feel free to omit any that cannot be improved any further.
 
 You should *not* require the letter writer to go beyond the information in the resume.
 
