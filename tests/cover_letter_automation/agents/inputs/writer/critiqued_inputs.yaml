@@ -1,0 +1,78 @@
+- jd_extract: |-
+    ### Requirements:
+    - Bachelor's or Master's degree in a relevant field (e.g., Computer Science, Finance, Data Science, Engineering, etc.).
+    - Proficiency in programming languages such as Python, Dotnet/C#, JavaScript, or Typescript.
+    - Familiarity with AI/ChatGPT, Tensor Flow, and data science methodologies, including machine learning, data analysis, and data visualization.
+    - Experience with JSON, REST.
+    - Strong problem-solving skills and a genuine passion for innovation.
+    - Effective communication skills and the ability to thrive in a collaborative team environment.
+    - An understanding of financial concepts and capital markets is advantageous but not mandatory.
+      
+    ### Responsibilities:
+    - Assist in programming and the creation of software tools and applications aimed at enhancing capital markets operations.
+    - Apply AI and data science techniques to analyze financial data, detect trends, and generate actionable insights.
+    - Work collaboratively with cross-functional teams to implement and test innovative solutions.
+
+    ### Company:
+    - Capital Markets Gateway (CMG)
+    - CMG is a FinTech start-up transforming the equity capital markets (ECM) by creating a digital marketplace that connects investors and underwriters via a neutral platform delivering integrated ECM data and analytics.
+    - The platform aims to streamline workflows and deliver information and analytics in real-time for speed to market and vital decision-making analysis.
+
+    ### Special Requests:
+    - No specific content or recipient for the cover letter was mentioned in the job description.
+
+  resume_extract: |-
+    - **Name**: Test Subject
+
+    - **Experience**:
+      - **Enerflo** (Senior Software Engineer, Feb 2020 - Present): Developing new APIs with NestJS, Typescript, GraphQL, and PostgreSQL. Building interfaces with React and maintaining systems built with Laravel. Team lead and mentor for junior developers.
+      - **iFit** (Senior Software Engineer, May 2019 - Jan 2020): Developed lambda microservices in Node.js and Typescript. Built interfaces using React.
+      - **eFlex Systems** (Senior Developer, Jul 2018 - Mar 2019): Migrated a legacy C# API and a C++ process to Node.js. Developed full-stack applications using Koa, Ember.js, and CoffeeScript.
+      - **PureCars** (Software Engineer, Oct 2017 - Jul 2018): Maintained legacy systems in Python and PHP. Architected new solutions for web scraping using serverless functions.
+      - **Showroom Logic** (Senior Software Engineer, Jun 2013 - Sep 2017): Developed full-stack applications using PHP and AngularJS. Created new full-stack applications using Python and Django.
+
+    - **Skills**:
+      - **Backend Development**: Node.js, ExpressJS, NestJS, Python, Django, PHP, Laravel, REST, GraphQL
+      - **Frontend Development**: JavaScript, TypeScript, Vue.js, React
+      - **Development Tools**: Git, Docker, Linux
+      - Proficiency in programming languages Python, JavaScript, and TypeScript.
+      - Experience with JSON and REST.
+
+    - **Education**:
+      - **Messiah College**: Bachelor of Science in Computer and Information Science, Sep 2009 - May 2012.
+
+    - **Projects**:
+      - **OpenStore**: The official app store for Ubuntu Touch, showcasing full-stack development skills and experience with JavaScript, Node.js, and MongoDB.
+      - **Clickable**: A tool to build and compile Ubuntu Touch apps easily from the command line, demonstrating proficiency in Python and Docker.
+
+  cover_letter_draft: |-
+    Dear Sir/Madam,
+
+    I am writing to express my interest in the Capital Markets Software Engineer position at Capital Markets Gateway (CMG), as advertised. With a Bachelor of Science in Computer and Information Science from Messiah College, coupled with my extensive experience in software development and a demonstrated proficiency in programming languages such as Python, JavaScript, and TypeScript, I am excited about the opportunity to contribute to CMG's mission of transforming the equity capital markets through innovation and technology.
+
+    Throughout my career, I have honed my skills in both backend and frontend development, working with technologies that align closely with CMG's requirements. At Enerflo, as a Senior Software Engineer, I led the development of new APIs using NestJS, TypeScript, and GraphQL, and maintained systems built with Laravel. This experience has equipped me with strong problem-solving skills and a solid understanding of data science methodologies, including machine learning, data analysis, and data visualization, although in different contexts. My work at iFit and eFlex Systems further developed my expertise in building software solutions using Node.js, TypeScript, and React, as well as migrating legacy systems to modern technologies.
+
+    I am particularly drawn to CMG's focus on creating a digital marketplace for the equity capital markets. My project experience, such as developing the OpenStore app store and the Clickable tool for Ubuntu Touch, showcases my ability to deliver innovative solutions and my passion for leveraging technology to solve complex problems. I am excited about the prospect of applying AI and data science techniques to analyze financial data, a field I am keen to explore further within the dynamic and collaborative environment at CMG.
+
+    I bring to the table effective communication skills, honed through leading teams and mentoring junior developers, and a genuine enthusiasm for technology and innovation. I am eager to contribute to a team that values collaboration, creativity, and delivering impactful solutions to enhance capital markets operations.
+
+    I look forward to the opportunity to discuss how my skills, experience, and interests align with CMG's goals and how I can contribute to your team's success. Thank you for considering my application. I am available at your earliest convenience for an interview.
+
+    Sincerely,
+
+    Test Subject (TS)
+
+  critique: |-
+    The cover letter provides a structured expression of TS's qualifications and interest in the Capital Markets Software Engineer position at Capital Markets Gateway (CMG). However, there are opportunities to enhance clarity, relevance, engagement, tone, and coherence. Here are some suggestions:
+
+    - **Clarity & Relevance**:
+      - The introductory paragraph should more directly state TS's current role and primary achievements to immediately establish his relevance for the position.
+
+    - **Engagement**:
+      - To make the cover letter more engaging, consider starting with a compelling statement or question that relates to CMG’s mission or the challenges facing the equity capital markets. This could hook the reader's interest from the beginning.
+
+    - **Tone**:
+      - The tone is professional, which is appropriate for the context. However, incorporating a bit more of TS's personal voice or enthusiasm for the FinTech field could make the letter feel more genuine and less formulaic. For instance, expressing a personal connection to CMG’s mission or explaining why he’s passionate about using technology to transform capital markets.
+
+    - **Between-paragraph coherence**:
+      - Transition sentences at the end of each paragraph could improve the flow of the letter. These would guide the reader from one idea to the next, making the letter read more smoothly.

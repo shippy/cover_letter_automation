@@ -45,6 +45,7 @@ class LLMTestCaseInput(BaseModel):
     jd_extract: str
     resume_extract: str
     cover_letter_draft: str | None = Field(None, description="Optional draft of a cover letter")
+    critique: str | None = Field(None, description="Optional critique of the resume")
 
     def get_input(self) -> str:
         """Create a single-shot input in lieu of a longer simulated conversation."""
@@ -52,6 +53,8 @@ class LLMTestCaseInput(BaseModel):
         Relevant items from the resume are here: \n\n{self.resume_extract}"""
         if self.cover_letter_draft:
             result += f"\n\nThe cover letter draft is here: \n\n{self.cover_letter_draft}"
+        if self.critique:
+            result += f"\n\nThe previous critique is here: \n\n{self.critique}"
 
         return result
 
