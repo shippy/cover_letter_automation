@@ -2,93 +2,46 @@
 
 # Cover Letter Automation
 
-A Python package for ingesting job descriptions & resumes, and crafting cover letters that use the latter to satisfy the former.
+A Python package for ingesting job descriptions & resumes, and crafting cover letters that use the
+latter to satisfy the former.
 
 ## 🚀 Using
 
-While the package is in theory pip-installable, it's not yet on PyPI. For now, you can clone the
-repo and run the following:
+### With PyPi install
 
 ```bash
-git clone https://github.com/shippy/cover_letter_automation.git
-cd cover_letter_automation
-poetry install
+pip install cover_letter_automation
 ```
 
-Afterwards, you will need to add your OpenAI API key (and, optionally, Bing API key) to a `.env`
-file in the root of the project. You can [grab your Bing API key here](https://www.microsoft.com/en-us/bing/apis/bing-web-search-api), though do be warned that the volume of requests the agent will want to make possibly exceeds the free tier. If you don't have
-a Bing API key, we'll automatically skip the web-search step. **Note that `CompanyResearcher` is 
-mostly broken and doesn't work, so **not setting the `BING_API_KEY` is fine**.
+This should make `make-cover-letter` command available on your command line. You can then run the
+following:
 
 ```bash
-echo "OPENAI_API_KEY=your_openai_api_key" > .env
-# echo "BING_API_KEY=your_bing_api_key" >> .env
+make-cover-letter --resume path/to/json/resume.json --jd path/to/jd.md
 ```
 
-
-Then, you should place your `resume.json` ([JSON Resume](https://jsonresume.org), although in
-principle it doesn't have to have that exact schema) in `resume/` and your job descriptions in
-`jd/`. You can then run the following:
-
-```bash
-poetry run python init_session.py --resume resume/$RESUME_NAME.json --jd jd/$JD_NAME.md
-# In theory, if you've placed your resume at resume/resume.json, you can omit that argument
-```
+This will generate a cover letter for the job description in `path/to/jd.md` using the resume in 
+`path/to/json/resume.json`. The full chat will be printed to the console, as will the estimated chat
+cost.
 
 Currently, due to the slightly ad-hoc nature of the agents, you'll need to run the above command for
 each job description you want to generate a cover letter for. The cover letters will be placed in
-`cover_letters/`.
+`cover_letters/`, a folder which will be created for you in your current working direcroty.
+
+See `make-cover-letter --help` for a full set of options.
+
+### Set your API keys
+
+You will need to add your OpenAI API key (and, optionally, Bing API key) to the environment as
+`OPENAI_API_KEY` and `BING_API_KEY`, or pass them as CLI options.
+
+You can [grab your Bing API key here](https://www.microsoft.com/en-us/bing/apis/bing-web-search-api), 
+though do be warned that the volume of requests the agent will want to make possibly exceeds the free
+tier. If you don't have a Bing API key, we'll automatically skip the web-search step.
+
+**Note that `CompanyResearcher` is  mostly broken and doesn't work, so _not setting the `BING_API_KEY` is fine_**.
 
 
-## 🧑‍💻 Contributing
-
-<details>
-<summary>Prerequisites</summary>
-
-<details>
-<summary>1. Install Docker</summary>
-
-1. Go to [Docker](https://www.docker.com/get-started), download and install docker.
-2. [Configure Docker to use the BuildKit build system](https://docs.docker.com/build/buildkit/#getting-started). On macOS and Windows, BuildKit is enabled by default in Docker Desktop.
-
-</details>
-
-<details>
-<summary>2. Install VS Code</summary>
-
-Go to [VS Code](https://code.visualstudio.com/), download and install VS Code.
-</details>
-
-
-</details>
-
-#### 1. Open DevContainer with VS Code
-Open this repository with VS Code, and run <kbd>Ctrl/⌘</kbd> + <kbd>⇧</kbd> + <kbd>P</kbd> → _Dev Containers: Reopen in Container_.
-
-The following commands can be used inside a DevContainer.
-
-#### 2. Run linters
-```bash
-poe lint
-```
-
-#### 3. Run tests
-```bash
-poe test
-```
-
-#### 4. Update poetry lock file
-```bash
-poetry lock --no-update
-```
-
-#### 5. Add dependencies and remove them if not needed
-```bash
-poetry add package
-poetry remove package
-# or remove the package from the pyproject.toml file and run
-poetry install --sync
-```
 
 ## Credits
 
