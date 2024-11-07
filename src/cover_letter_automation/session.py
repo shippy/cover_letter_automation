@@ -22,6 +22,7 @@ def setup_and_start_session(
     job_description: str,
     json_resume_path: Path,
     bing_config: dict[str, Any] | None = None,
+    motivation: str | None = None,
 ) -> ChatResult:
     """Set up and start the group chat session."""
     client = CoverLetterClient()
@@ -36,7 +37,7 @@ def setup_and_start_session(
 
     if bing_config is None:
         speaker_transitions = {
-            client: [jd_ingester, critic],  # go straight to `critic` if chat closed without saving
+            client: [jd_ingester],
             jd_ingester: [resume_reader],
             resume_reader: [writer],
             writer: [critic],
@@ -44,7 +45,7 @@ def setup_and_start_session(
         }
     else:
         speaker_transitions = {
-            client: [jd_ingester, critic],  # go straight to `critic` if chat closed without saving
+            client: [jd_ingester],
             jd_ingester: [researcher],
             researcher: [researcher, resume_reader],
             resume_reader: [writer],
@@ -66,9 +67,18 @@ def setup_and_start_session(
         llm_config=deepcopy(llm_config),
     )
 
+    initial_message = (
+        "Please start the extraction from the job description, then write a cover letter based on a resume."
+    )
+    if motivation:
+        initial_message += f"\n\nThe general motivation is as follows:\n\n{motivation}"
+        initial_message += (
+            "\n\nPlease start the extraction from the job description, then write a cover letter based on a resume."
+        )
+
     conversation = client.initiate_chat(
         recipient=group_manager,
-        message="Please start the extraction from the job description, then write a cover letter based on a resume.",
+        message=initial_message,
         summary_method="last_msg",  # Avoid a reflection price tag.
         clear_history=True,
         max_turns=22,

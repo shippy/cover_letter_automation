@@ -58,10 +58,10 @@ class Writer(ConversableAgent):
             **kwargs,
         )
 
-        # Instantiate a Teachability object. Its parameters are all optional.
-        teachability = Teachability(
-            reset_db=True,  # Use True to force-reset the memo DB, and False to use an existing DB.
-        )
+        # # Instantiate a Teachability object. Its parameters are all optional.
+        # teachability = Teachability(
+        #     reset_db=True,  # Use True to force-reset the memo DB, and False to use an existing DB.
+        # )
 
-        # Now add teachability to the agent.
-        teachability.add_to_agent(self)
+        # # Now add teachability to the agent.
+        # teachability.add_to_agent(self)
