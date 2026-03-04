@@ -14,7 +14,7 @@ from tests.cover_letter_automation.agents.utils import get_chat_outcome
 from cover_letter_automation.agents.resume_retriever import ResumeRetriever
 
 
-@pytest.fixture()
+@pytest.fixture
 def resume_retriever_agent(llm_config: dict[str, Any]) -> ResumeRetriever:
     """Create a resume retriever agent for test-case uses."""
     json_resume = {
@@ -46,7 +46,7 @@ def resume_retriever_agent(llm_config: dict[str, Any]) -> ResumeRetriever:
     )
 
 
-@pytest.mark.eval()
+@pytest.mark.eval
 @pytest.mark.parametrize(
     ("job_description", "company"),
     [

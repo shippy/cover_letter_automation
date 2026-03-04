@@ -26,8 +26,8 @@ _DEFAULT_LLM_CONFIG = {
 
 def make_agent(agent: AnyAgent, llm_config: dict[str, Any] = _DEFAULT_LLM_CONFIG, **kwargs: Any) -> Agent:
     """Instantiate an agent for test purposes."""
-    _llm_config = deepcopy(llm_config)
-    return agent(_llm_config, **kwargs)
+    config = deepcopy(llm_config)
+    return agent(config, **kwargs)
 
 
 def get_chat_outcome(user_proxy: UserProxyAgent, agent_under_test: Agent, message: str) -> str:
@@ -61,7 +61,7 @@ class LLMTestCaseInput(BaseModel):
     @staticmethod
     def load_from_file(input_path: Path) -> list["LLMTestCaseInput"]:
         """Load the test case inputs from a YAML or JSON file."""
-        with input_path.open("r") as f:
+        with input_path.open("r", encoding="utf-8") as f:
             if input_path.suffix in {".yml", ".yaml"}:
                 all_inputs = yaml.safe_load(f)
             elif input_path.suffix in {".json", ".jsonl"}:

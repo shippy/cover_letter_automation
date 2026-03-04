@@ -32,7 +32,7 @@ def _make_writer_dataset(file_name: str) -> EvaluationDataset:
 _uncritiqued_cases_dataset = _make_writer_dataset("normal_inputs.yaml")
 
 
-@pytest.mark.eval()
+@pytest.mark.eval
 @pytest.mark.parametrize("test_case", _uncritiqued_cases_dataset)
 def test_writer_generates_cover_letter(test_case: LLMTestCase) -> None:
     """Test that the writer agent generates a cover letter."""
@@ -51,7 +51,7 @@ def test_writer_generates_cover_letter(test_case: LLMTestCase) -> None:
 _critiqued_cases_dataset = _make_writer_dataset("critiqued_inputs.yaml")
 
 
-@pytest.mark.eval()
+@pytest.mark.eval
 @pytest.mark.parametrize("test_case", _critiqued_cases_dataset)
 def test_writer_generates_cover_letter_against_critique(test_case: LLMTestCase) -> None:
     """Test that the writer agent generates a cover letter conforming to the criticism."""

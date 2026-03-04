@@ -33,7 +33,7 @@ _normal_cases_dataset = _make_critic_dataset("normal_inputs.yaml")
 _language_error_dataset = _make_critic_dataset("language_errors.yaml")
 
 
-@pytest.mark.eval()
+@pytest.mark.eval
 @pytest.mark.parametrize("test_case", _normal_cases_dataset)
 def test_critic_writes_good_critique(test_case: LLMTestCase) -> None:
     """Evaluate that output makes sense."""
@@ -41,7 +41,7 @@ def test_critic_writes_good_critique(test_case: LLMTestCase) -> None:
         name="Good criticism present",
         evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT],
         evaluation_steps=[
-            "Feedback in the actual output relates to the cover letter in the input."
+            "Feedback in the actual output relates to the cover letter in the input.",
             "Feedback is structured into several points.",
             "Each point in the critique is meaningful, constructive, and well-made.",
         ],
@@ -49,7 +49,7 @@ def test_critic_writes_good_critique(test_case: LLMTestCase) -> None:
     assert_test(test_case, metrics=[g_eval_metric])
 
 
-@pytest.mark.eval()
+@pytest.mark.eval
 @pytest.mark.parametrize("test_case", _language_error_dataset)
 def test_critic_catches_language_errors(test_case: LLMTestCase) -> None:
     """When given a cover letter with errors in language and grammar, the Critic should note these."""
@@ -58,8 +58,10 @@ def test_critic_catches_language_errors(test_case: LLMTestCase) -> None:
         # Skip LLMTestCaseParams.INPUT since the presence of issues there seems to confuse GEval.
         evaluation_params=[LLMTestCaseParams.ACTUAL_OUTPUT],
         evaluation_steps=[
-            "Feedback in the actual output indicates the presence of spelling and/or grammar errors in the "
-            "inputted cover letter (among other problems)."
+            (
+                "Feedback in the actual output indicates the presence of spelling and/or grammar errors in the "
+                "inputted cover letter (among other problems)."
+            ),
         ],
     )
     assert_test(test_case, metrics=[g_eval_metric])
