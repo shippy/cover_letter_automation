@@ -18,15 +18,15 @@ _critic_agent = make_agent(Critic)
 
 def _make_critic_dataset(file_name: str) -> EvaluationDataset:
     fpath = Path(__file__).parent / f"inputs/critic/{file_name}"
-    return EvaluationDataset(
-        test_cases=[
+    dataset = EvaluationDataset()
+    for case in LLMTestCaseInput.load_from_file(fpath):
+        dataset.add_test_case(
             LLMTestCase(
                 input=case.get_input(),
                 actual_output=get_chat_outcome(_user_proxy, _critic_agent, case.get_input()),
             )
-            for case in LLMTestCaseInput.load_from_file(fpath)
-        ],
-    )
+        )
+    return dataset
 
 
 _normal_cases_dataset = _make_critic_dataset("normal_inputs.yaml")
@@ -34,7 +34,7 @@ _language_error_dataset = _make_critic_dataset("language_errors.yaml")
 
 
 @pytest.mark.eval
-@pytest.mark.parametrize("test_case", _normal_cases_dataset)
+@pytest.mark.parametrize("test_case", _normal_cases_dataset.test_cases)
 def test_critic_writes_good_critique(test_case: LLMTestCase) -> None:
     """Evaluate that output makes sense."""
     g_eval_metric = GEval(
@@ -50,7 +50,7 @@ def test_critic_writes_good_critique(test_case: LLMTestCase) -> None:
 
 
 @pytest.mark.eval
-@pytest.mark.parametrize("test_case", _language_error_dataset)
+@pytest.mark.parametrize("test_case", _language_error_dataset.test_cases)
 def test_critic_catches_language_errors(test_case: LLMTestCase) -> None:
     """When given a cover letter with errors in language and grammar, the Critic should note these."""
     g_eval_metric = GEval(

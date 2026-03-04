@@ -18,22 +18,22 @@ _writer_agent = make_agent(Writer)
 
 def _make_writer_dataset(file_name: str) -> EvaluationDataset:
     fpath = Path(__file__).parent / f"inputs/writer/{file_name}"
-    return EvaluationDataset(
-        test_cases=[
+    dataset = EvaluationDataset()
+    for case in LLMTestCaseInput.load_from_file(fpath):
+        dataset.add_test_case(
             LLMTestCase(
                 input=case.get_input(),
                 actual_output=get_chat_outcome(_user_proxy, _writer_agent, case.get_input()),
             )
-            for case in LLMTestCaseInput.load_from_file(fpath)
-        ],
-    )
+        )
+    return dataset
 
 
 _uncritiqued_cases_dataset = _make_writer_dataset("normal_inputs.yaml")
 
 
 @pytest.mark.eval
-@pytest.mark.parametrize("test_case", _uncritiqued_cases_dataset)
+@pytest.mark.parametrize("test_case", _uncritiqued_cases_dataset.test_cases)
 def test_writer_generates_cover_letter(test_case: LLMTestCase) -> None:
     """Test that the writer agent generates a cover letter."""
     g_eval_metric = GEval(
@@ -52,7 +52,7 @@ _critiqued_cases_dataset = _make_writer_dataset("critiqued_inputs.yaml")
 
 
 @pytest.mark.eval
-@pytest.mark.parametrize("test_case", _critiqued_cases_dataset)
+@pytest.mark.parametrize("test_case", _critiqued_cases_dataset.test_cases)
 def test_writer_generates_cover_letter_against_critique(test_case: LLMTestCase) -> None:
     """Test that the writer agent generates a cover letter conforming to the criticism."""
     g_eval_metric = GEval(
