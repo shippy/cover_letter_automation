@@ -4,8 +4,8 @@ from pathlib import Path
 
 import pytest
 from autogen import UserProxyAgent
-from deepeval import assert_test
 from deepeval.dataset import EvaluationDataset
+from deepeval.evaluate.evaluate import assert_test
 from deepeval.metrics import GEval
 from deepeval.test_case import LLMTestCase, LLMTestCaseParams
 from tests.cover_letter_automation.agents.utils import LLMTestCaseInput, get_chat_outcome, make_agent
