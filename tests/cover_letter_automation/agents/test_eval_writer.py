@@ -1,6 +1,9 @@
 """Evals for the Writer agent."""
 
+from __future__ import annotations
+
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import pytest
 from autogen import UserProxyAgent
@@ -8,6 +11,9 @@ from deepeval.dataset import EvaluationDataset
 from deepeval.evaluate.evaluate import assert_test
 from deepeval.metrics import GEval
 from deepeval.test_case import LLMTestCase, LLMTestCaseParams
+
+if TYPE_CHECKING:
+    from deepeval.metrics.base_metric import BaseMetric
 from tests.cover_letter_automation.agents.utils import LLMTestCaseInput, get_chat_outcome, make_agent
 
 from cover_letter_automation.agents import Writer
@@ -45,7 +51,8 @@ def test_writer_generates_cover_letter(test_case: LLMTestCase) -> None:
             "Each paragraph in the cover letter in actual output is meaningful and well-made.",
         ],
     )
-    assert_test(test_case, metrics=[g_eval_metric])
+    metrics: list[BaseMetric] = [g_eval_metric]
+    assert_test(test_case, metrics=metrics)
 
 
 _critiqued_cases_dataset = _make_writer_dataset("critiqued_inputs.yaml")
@@ -63,4 +70,5 @@ def test_writer_generates_cover_letter_against_critique(test_case: LLMTestCase) 
             "The cover letter in actual output incorporates the criticisms from the input.",
         ],
     )
-    assert_test(test_case, metrics=[g_eval_metric])
+    metrics: list[BaseMetric] = [g_eval_metric]
+    assert_test(test_case, metrics=metrics)

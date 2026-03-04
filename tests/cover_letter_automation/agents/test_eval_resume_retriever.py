@@ -1,17 +1,22 @@
 """Run evals for the resume retriever agent."""
 
+from __future__ import annotations
+
 import json
 from copy import deepcopy
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pytest
-from autogen import UserProxyAgent
 from deepeval.evaluate.evaluate import assert_test
 from deepeval.metrics import GEval
 from deepeval.test_case import LLMTestCase, LLMTestCaseParams
 from tests.cover_letter_automation.agents.utils import get_chat_outcome
 
 from cover_letter_automation.agents.resume_retriever import ResumeRetriever
+
+if TYPE_CHECKING:
+    from autogen import UserProxyAgent
+    from deepeval.metrics.base_metric import BaseMetric
 
 
 @pytest.fixture
@@ -61,17 +66,18 @@ def test_relevant_content_retrieved(
     message = "Here is the job description: " + job_description
     chat_outcome = get_chat_outcome(user_proxy, resume_retriever_agent, message)
 
+    metrics: list[BaseMetric] = [
+        GEval(
+            name="Inclusion",
+            evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT],
+            threshold=0.7,
+            evaluation_steps=[
+                f"Check that the output contains the company name '{company}'",
+                f"Check that the output does not contain any company name other than '{company}'",
+            ],
+        )
+    ]
     assert_test(
         LLMTestCase(input=message, actual_output=chat_outcome, context=[company]),
-        [
-            GEval(
-                name="Inclusion",
-                evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT],
-                threshold=0.7,
-                evaluation_steps=[
-                    f"Check that the output contains the company name '{company}'",
-                    f"Check that the output does not contain any company name other than '{company}'",
-                ],
-            )
-        ],
+        metrics,
     )
