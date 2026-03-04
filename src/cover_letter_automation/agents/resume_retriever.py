@@ -50,7 +50,7 @@ class ResumeRetriever(ConversableAgent):
     @staticmethod
     def read_json_resume(json_resume_path: Path) -> str:
         """Read the JSON resume from the given path."""
-        with json_resume_path.open("r") as f:
+        with json_resume_path.open("r", encoding="utf-8") as f:
             content = json.load(f)
             minified_content = json.dumps(content, separators=(",", ":"))
 

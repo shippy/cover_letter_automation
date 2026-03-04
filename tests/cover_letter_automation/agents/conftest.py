@@ -7,7 +7,7 @@ import pytest
 from autogen import UserProxyAgent
 
 
-@pytest.fixture()
+@pytest.fixture
 def llm_config(model: str | None = os.environ.get("OPENAI_API_MODEL")) -> dict[str, Any]:
     """Shared config for the LLMs."""
     return {
@@ -21,7 +21,7 @@ def llm_config(model: str | None = os.environ.get("OPENAI_API_MODEL")) -> dict[s
     }
 
 
-@pytest.fixture()
+@pytest.fixture
 def user_proxy(llm_config: dict[str, Any]) -> UserProxyAgent:
     """Create a user proxy agent for test-case uses."""
     return UserProxyAgent(

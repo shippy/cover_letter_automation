@@ -3,10 +3,6 @@
 from typing import Any
 
 from autogen import ConversableAgent
-from autogen.agentchat.contrib.capabilities.teachability import Teachability
-
-# from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent  # noqa: ERA001
-
 
 # - Attempt to retrieve relevant pieces of the resumé in response to either the requirements or the
 #   feedback.
@@ -57,11 +53,3 @@ class Writer(ConversableAgent):
             llm_config=llm_config,
             **kwargs,
         )
-
-        # # Instantiate a Teachability object. Its parameters are all optional.
-        # teachability = Teachability(
-        #     reset_db=True,  # Use True to force-reset the memo DB, and False to use an existing DB.
-        # )
-
-        # # Now add teachability to the agent.
-        # teachability.add_to_agent(self)
