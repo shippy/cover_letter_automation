@@ -1,19 +1,26 @@
-# Configure the following variables in your repository secrets:
-# POETRY_PYPI_TOKEN_PYPI
-#
-# The POETRY_PYPI_TOKEN_PYPI must be created on: https://pypi.org/manage/account/token/
-#
+# Publishes to PyPI via Trusted Publishing (OIDC) — no API token stored in GitHub.
+# PyPI side: https://pypi.org/manage/project/cover_letter_automation/settings/publishing/
+#   owner=shippy, repo=cover_letter_automation, workflow=publish.yml, environment=pypi
 name: Publish package
 
 on:
   release:
     types:
-      - created
+      - published
+
+permissions:
+  contents: read
 
 jobs:
   publish:
     name: Publish
     runs-on: ubuntu-latest
+    # `pypi` environment: required reviewer + only tags matching v* (tags are admin-only via ruleset).
+    environment:
+      name: pypi
+      url: https://pypi.org/p/cover_letter_automation
+    permissions:
+      id-token: write
 
     steps:
       - name: Checkout
@@ -27,7 +34,8 @@ jobs:
       - name: Install Poetry
         run: pip install --no-input poetry==1.7.1
 
-      - name: Publish package
-        run: |
-          poetry config pypi-token.pypi "${{ secrets.POETRY_PYPI_TOKEN_PYPI }}"
-          poetry publish --build
+      - name: Build
+        run: poetry build
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
